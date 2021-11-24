@@ -1,32 +1,222 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/dimensions.dart';
 import 'package:habitual/ui/constants/strings.dart';
+import 'package:habitual/ui/constants/text_styles.dart';
+import 'package:habitual/ui/screens/global_widgets/cards/colored/colored_card_fixed.dart';
+import 'package:habitual/ui/screens/global_widgets/cards/product/product_card_vertical_large.dart';
+import 'package:habitual/ui/screens/global_widgets/cards/product/product_card_vertical_small.dart';
+import 'package:habitual/ui/screens/global_widgets/nav/bottom_nav_bar.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
+
+  final List<String> coloredCardTitleList = [
+    "Shopping habits and interests",
+    "Today’s trending items",
+    "Incoming! Flash deals",
+    "Browse our categories"
+  ];
+  final List<Color> cardColors = [
+    AppColors.accentRed,
+    AppColors.accentTeal,
+    AppColors.accentIndigo,
+    AppColors.accentOrange
+  ];
+
+  final ProductModel productModel = ProductModel(
+      productName: "Product Name",
+      sellingPrice: 69.99,
+      actualPrice: 79.99,
+      productDescription:
+          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
+      category: "Category",
+      isStaffPick: true);
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    final TextTheme textTheme = theme.textTheme;
-
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: Dimensions.verticalPadding,
-              horizontal: Dimensions.horizontalPadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text("Hello World"),
+      bottomNavigationBar: const AppBottomNavBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: 537.h,
+                ),
+
+                /// Background Circle
+                Positioned(
+                    left: -36.w,
+                    top: -368.h,
+                    child: Container(
+                      width: 752.r,
+                      height: 752.r,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(386.r),
+                          color: AppColors.primaryColor),
+                    )),
+
+                /// Title 1
+                Positioned(
+                  left: 24.w,
+                  top: 77.h,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "TRENDING",
+                        style: AppTextStyles.h6.copyWith(
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.textGray_80),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      SizedBox(
+                        width: 198.w,
+                        child: Text(
+                          "Find the stuff you love.",
+                          style: AppTextStyles.h3.copyWith(
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.textGray_80),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                /// Login Avatar
+                Positioned(
+                  right: Dimensions.horizontalPadding,
+                  top: 64.h,
+                  child: Column(
+                    children: const [
+                      CircleAvatar(
+                          backgroundColor: AppColors.bgWhite,
+                          child: Icon(
+                            Icons.person,
+                            color: AppColors.uiGray_80,
+                          )),
+                      Text(
+                        'Log in',
+                        style: AppTextStyles.bodySmallBold,
+                      )
+                    ],
+                  ),
+                ),
+
+                /// Large Product Cards
+                Positioned(
+                  top: 176.h,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        width: Get.width,
+                        height: 360.h,
+                        child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: 5,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            double paddingLeft = (index == 0) ? 16.w : 0;
+                            double paddingRight = (index == 4) ? 16.w : 0;
+                            return Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  paddingLeft + 8, 8, paddingRight + 8, 0),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: ProductCardVerticalLarge(
+                                  product: productModel,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ),
+
+            /// TITLE 2
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: Dimensions.horizontalPadding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "HOT DEALS",
+                    style: AppTextStyles.h6.copyWith(
+                      fontWeight: FontWeight.w900,
+                      color: AppColors.textGray_80,
+                    ),
+                  ),
+                  Text(
+                    "SEE ALL",
+                    style: AppTextStyles.h6.copyWith(
+                      fontWeight: FontWeight.w900,
+                      decoration: TextDecoration.underline,
+                      color: AppColors.textGray_60,
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            /// SMALL VERTICAL PRODUCT CARDS
+            SizedBox(
+              width: Get.width,
+              height: 327.h,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  double paddingLeft = (index == 0) ? 16.w : 0;
+                  double paddingRight = (index == 4) ? 16.w : 0;
+                  return Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        paddingLeft + 8, 24, paddingRight + 8, 0),
+                    child: Align(
+                        alignment: Alignment.topLeft,
+                        child: ProductCardVerticalSmall(
+                          product: productModel,
+                        )),
+                  );
+                },
+              ),
+            ),
+
+            /// COLORED CARDS
+            Container(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+              child: GridView.builder(
+                padding: EdgeInsets.zero,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.0,
+                  mainAxisSpacing: 16.w,
+                  crossAxisSpacing: 16.w,
+                ),
+                itemCount: coloredCardTitleList.length,
+                itemBuilder: (context, index) {
+                  return ColoredCardFixed(
+                      title: coloredCardTitleList[index],
+                      color: cardColors[index]);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitual/controllers/intro/intro_controller.dart';
+import 'package:habitual/routes/app_pages.dart';
+import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
+import 'package:habitual/ui/constants/dimensions.dart';
+import 'package:habitual/ui/constants/strings.dart';
+import 'package:habitual/ui/constants/text_styles.dart';
+import 'package:habitual/ui/screens/global_widgets/buttons/primary_button.dart';
 import 'package:habitual/ui/screens/intro/widgets/intro_content.dart';
 
 class Intro extends StatelessWidget {
   final IntroController introController = Get.find();
 
-  final List<Map<String, String>> splashData = [
+  final List<Map<String, String>> introTextData = [
     {
-      "text": "Welcome to Tokoto, Let’s shop!",
-      "image": "assets/images/splash_1.png"
+      "title": Strings.introTitle1,
+      "body": Strings.introBody1,
+      "image": Assets.introImage1
     },
     {
-      "text":
-          "We help people conect with store \naround United State of America",
-      "image": "assets/images/splash_2.png"
+      "title": Strings.introTitle2,
+      "body": Strings.introBody2,
+      "image": Assets.introImage2
     },
     {
-      "text": "We show the easy way to shop. \nJust stay at home with us",
-      "image": "assets/images/splash_3.png"
+      "title": Strings.introTitle3,
+      "body": Strings.introBody3,
+      "image": Assets.introImage3
     },
+  ];
+
+  final List<Map<String, Color>> introBGAccentColor = [
+    {"color": AppColors.primaryColor_20},
+    {"color": AppColors.accentTeal.withOpacity(0.1)},
+    {"color": AppColors.accentRed.withOpacity(0.1)},
   ];
 
   Intro({Key? key}) : super(key: key);
@@ -30,45 +45,72 @@ class Intro extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 3,
-                child: PageView.builder(
-                  onPageChanged: (value) {
-                    print(value);
-                    introController.currentPage = value;
-                  },
-                  itemCount: splashData.length,
-                  itemBuilder: (context, index) => IntroContent(
-                    image: splashData[index]["image"],
-                    text: splashData[index]['text'],
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: <Widget>[
-                      const Spacer(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          splashData.length,
-                          (index) => buildDot(index: index),
-                        ),
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            // Positioned(left: -152, top: -59,child: Container(width: 452.r, height: 452.r, decoration: BoxDecoration(borderRadius: BorderRadius.circular(251.r), color: AppColors.primaryColor_20),)),
+
+            SizedBox(
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: PageView.builder(
+                      onPageChanged: (value) {
+                        introController.currentPage = value;
+                      },
+                      itemCount: introTextData.length,
+                      itemBuilder: (context, index) => IntroContent(
+                        image: introTextData[index]["image"],
+                        body: introTextData[index]["body"],
+                        title: introTextData[index]["title"],
+                        backgroundCircleColor: introBGAccentColor[index]
+                            ["color"],
+                        backgroundCirclePosition: index % 2 == 1,
                       ),
-                      const Spacer(flex: 3),
-                    ],
+                    ),
                   ),
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 134.h,
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      introTextData.length,
+                      (index) => buildDot(index: index),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              bottom: 40.h,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.horizontalPadding),
+                child: PrimaryButton(
+                  text: Strings.next,
+                  onClick: () {
+                    Get.toNamed(Routes.INTRO_SIGN_UP);
+                  },
                 ),
               ),
-            ],
-          ),
+            ),
+            Positioned(
+              top: 58.h,
+              right: 28.w,
+              child: Text(
+                Strings.skip,
+                style: AppTextStyles.bodyRegular.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
