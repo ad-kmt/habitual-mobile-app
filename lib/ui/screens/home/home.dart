@@ -4,11 +4,10 @@ import 'package:get/get.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/dimensions.dart';
-import 'package:habitual/ui/constants/strings.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/colored/colored_card_fixed.dart';
-import 'package:habitual/ui/screens/global_widgets/cards/product/product_card_vertical_large.dart';
-import 'package:habitual/ui/screens/global_widgets/cards/product/product_card_vertical_small.dart';
+import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_product_card_large.dart';
+import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_product_card_small.dart';
 import 'package:habitual/ui/screens/global_widgets/nav/bottom_nav_bar.dart';
 
 class Home extends StatelessWidget {
@@ -131,7 +130,7 @@ class Home extends StatelessWidget {
                                   paddingLeft + 8, 8, paddingRight + 8, 0),
                               child: Align(
                                 alignment: Alignment.topLeft,
-                                child: ProductCardVerticalLarge(
+                                child: VerticalProductCardLarge(
                                   product: productModel,
                                 ),
                               ),
@@ -187,7 +186,7 @@ class Home extends StatelessWidget {
                         paddingLeft + 8, 24, paddingRight + 8, 0),
                     child: Align(
                         alignment: Alignment.topLeft,
-                        child: ProductCardVerticalSmall(
+                        child: VerticalProductCardSmall(
                           product: productModel,
                         )),
                   );

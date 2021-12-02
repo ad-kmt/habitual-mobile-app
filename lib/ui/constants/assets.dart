@@ -19,9 +19,12 @@ class Assets {
   static const String introImage4 = "assets/images/intro/intro_4.svg";
 
   //product images
-  static const String productImage1 = "assets/images/product/product_image_headphone.png";
-  static const String productImage2 = "assets/images/product/product_image_laptop.png";
-
+  static const String productImage1 =
+      "assets/images/product/product_image_headphone.png";
+  static const String productImage2 =
+      "assets/images/product/product_image_laptop.png";
+  static const String productImage3 =
+      "assets/images/product/product_image_controller.png";
 //app core global assets
 
 }

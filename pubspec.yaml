@@ -44,6 +44,7 @@ dependencies:
   json_annotation: ^4.3.0
   shared_preferences: ^2.0.8
   flutter_screenutil: ^5.0.0+2
+  flutter_slidable: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,7 @@ flutter:
     - assets/logo/
     - assets/images/product/
     - assets/images/icons/
+    - assets/images/social_media/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

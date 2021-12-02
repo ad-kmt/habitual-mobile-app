@@ -10,7 +10,6 @@ import 'package:habitual/ui/constants/strings.dart';
 import 'bindings/intro_binding.dart';
 
 void main() {
-
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

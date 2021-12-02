@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/base/button_icon_small.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/forward_icon_button.dart';
 
 class ColoredCardFixed extends StatelessWidget {

@@ -8,4 +8,6 @@ abstract class Routes {
   static const INTRO_SIGN_UP = '/intro/signup';
   static const SIGNUP_PROMPT = '/signup-prompt';
   static const LOGIN = '/login';
+  static const SIGNUP = '/signup';
+  static const LOGIN_PROFILE = '/login-profile';
 }

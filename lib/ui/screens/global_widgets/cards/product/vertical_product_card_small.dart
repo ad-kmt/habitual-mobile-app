@@ -5,22 +5,21 @@ import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/base/button_icon_small.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/wishlist_icon_button.dart';
-import 'package:habitual/ui/screens/global_widgets/pills/discount.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/staff_pick.dart';
-import 'package:habitual/ui/screens/global_widgets/rating.dart';
 
-class ProductCardVerticalLarge extends StatelessWidget {
-  const ProductCardVerticalLarge({Key? key, required this.product}) : super(key: key);
+import '../../rating.dart';
 
+class VerticalProductCardSmall extends StatelessWidget {
+  const VerticalProductCardSmall({Key? key, required this.product})
+      : super(key: key);
   final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 285.w,
-      height: 312.h,
+      width: 156.w,
+      height: 241.h,
       decoration: BoxDecoration(
         color: AppColors.bgWhite,
         borderRadius: BorderRadius.circular(10.r),
@@ -35,9 +34,9 @@ class ProductCardVerticalLarge extends StatelessWidget {
               /// IMAGE
               Container(
                 child: const Image(
-                  image: AssetImage(Assets.productImage1),
+                  image: AssetImage(Assets.productImage2),
                 ),
-                height: 160.h,
+                height: 136.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10.r),
@@ -46,13 +45,18 @@ class ProductCardVerticalLarge extends StatelessWidget {
                   color: AppColors.uiGray_20,
                 ),
               ),
+
               /// WISHLIST ICON BUTTON
               Positioned(
-                  top: 8.r,
-                  right: 8.r,
-                  child: const WishlistIconButton(),),
+                top: 8.r,
+                right: 8.r,
+                child: const WishlistIconButton(
+                  isSelected: false,
+                ),
+              ),
             ],
           ),
+
           /// PRODUCT DETAILS
           Padding(
             padding: EdgeInsets.all(16.r),
@@ -62,13 +66,14 @@ class ProductCardVerticalLarge extends StatelessWidget {
                 /// NAME
                 Text(
                   product.productName,
-                  style:
-                      AppTextStyles.h4.copyWith(color: AppColors.textGray_80),
+                  style: AppTextStyles.bodyRegular
+                      .copyWith(color: AppColors.textGray_80),
                   overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(
-                  height: 4.h,
+                  height: 8.h,
                 ),
+
                 /// PRICE
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,72 +83,40 @@ class ProductCardVerticalLarge extends StatelessWidget {
                       children: [
                         /// SELLING PRICE
                         Text(
-                           product.sellingPrice.toStringAsFixed(2),
-                          style: AppTextStyles.h5
+                          "\$${product.sellingPrice.toStringAsFixed(2)}",
+                          style: AppTextStyles.h6
                               .copyWith(fontWeight: FontWeight.w900),
                         ),
                         SizedBox(
                           width: 8.w,
                         ),
+
                         /// ACTUAL PRICE
-                        if(product.discount != 0) Text(
-                          product.actualPrice.toStringAsFixed(2),
-                          style: AppTextStyles.strikeSmall.copyWith(
-                            color: AppColors.textGray_40,
-                            fontWeight: FontWeight.w700,
+                        if (product.discount != 0)
+                          Text(
+                            "\$${product.actualPrice.toStringAsFixed(2)}",
+                            style: AppTextStyles.strikeSmall.copyWith(
+                              color: AppColors.textGray_40,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 4.h,
-                        ),
                       ],
                     ),
-                    /// DISCOUNT
-                    if(product.discount!=0)
-                    DiscountPill(discountPercentage: product.discount)
                   ],
                 ),
                 SizedBox(
-                  height: 4.h,
+                  height: 8.h,
                 ),
-                /// DESCRIPTION
-                if(product.productDescription.isNotEmpty)Text(
-                  product.productDescription,
-                  maxLines: 2,
-                  style: AppTextStyles.bodySmall.copyWith(
-                    color: AppColors.uiGray_60,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                SizedBox(
-                  height: 12.h,
-                ),
+
                 /// MISC
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     /// RATING, CATEGORY
-                    Row(
-                      children: [
-                        const Rating(value: 4.5),
-                        SizedBox(
-                          width: 2.w,
-                        ),
-                        const Text(
-                          '(${33})',
-                          style: AppTextStyles.bodySmall,
-                        ),
-                        SizedBox(
-                          width: 8.w,
-                        ),
-                        if(product.category.isNotEmpty)Text(
-                          product.category,
-                          style: AppTextStyles.bodySmallBold,
-                        ),
-                      ],
-                    ),
+                    const Rating(value: 4.5),
+
                     /// STAFF PICK PILL
-                    if(product.isStaffPick)const StaffPickPill(),
+                    if (product.isStaffPick) const StaffPickPill(),
                   ],
                 ),
               ],
