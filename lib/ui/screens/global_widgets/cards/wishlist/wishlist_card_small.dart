@@ -8,9 +8,6 @@ import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/add_to_cart_button.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/wishlist_icon_button.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/discount.dart';
-import 'package:habitual/ui/screens/global_widgets/pills/staff_pick.dart';
-
-import '../../rating.dart';
 
 class WishlistCardSmall extends StatelessWidget {
   const WishlistCardSmall({Key? key, required this.product}) : super(key: key);
@@ -101,55 +98,6 @@ class WishlistCardSmall extends StatelessWidget {
                     DiscountPill(discountPercentage: product.discount)
                 ],
               ),
-              SizedBox(
-                height: 4.h,
-              ),
-
-              /// MISC
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  /// RATING, CATEGORY
-                  Row(
-                    children: [
-                      const Rating(value: 4.5),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      if (product.category.isNotEmpty)
-                        Text(
-                          product.category,
-                          style: AppTextStyles.bodySmallBold,
-                        ),
-                    ],
-                  ),
-
-                  /// STAFF PICK PILL
-                  if (product.isStaffPick) const StaffPickPill(),
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Shipped",
-                    style: AppTextStyles.linkRegular
-                        .copyWith(fontWeight: FontWeight.w800),
-                  ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  Icon(
-                    Icons.check_circle,
-                    size: 16.r,
-                  )
-                ],
-              ),
-
               SizedBox(
                 height: 4.h,
               ),

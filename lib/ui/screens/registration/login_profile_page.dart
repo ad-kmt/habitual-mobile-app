@@ -1,13 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/app_divider_medium.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/primary_button.dart';
+import 'package:habitual/ui/screens/global_widgets/cart/cart_bottom_sheet.dart';
+import 'package:habitual/ui/screens/global_widgets/divider/app_divider_medium.dart';
 import 'package:habitual/ui/screens/global_widgets/nav/bottom_nav_bar.dart';
 
-class LoginProfilePage extends StatelessWidget {
-  const LoginProfilePage({Key? key}) : super(key: key);
+class LoginProfilePage extends StatelessWidget with CartBottomSheet {
+  LoginProfilePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class LoginProfilePage extends StatelessWidget {
                   Text(
                     "Profile",
                     style:
-                        AppTextStyles.h4.copyWith(fontWeight: FontWeight.w700),
+                    AppTextStyles.h4.copyWith(fontWeight: FontWeight.w700),
                   ),
                   SizedBox(
                     height: 16.h,

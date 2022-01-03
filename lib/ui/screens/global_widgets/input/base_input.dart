@@ -14,6 +14,8 @@ class BaseInput extends StatelessWidget {
     this.isObscureText = false,
     this.prefixIconData,
     this.suffixIconData,
+    this.validator,
+    this.textEditingController,
   }) : super(key: key);
 
   final String labelRight;
@@ -24,6 +26,8 @@ class BaseInput extends StatelessWidget {
   final bool isObscureText;
   final IconData? prefixIconData;
   final IconData? suffixIconData;
+  final FormFieldValidator<String>? validator;
+  final TextEditingController? textEditingController;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +64,8 @@ class BaseInput extends StatelessWidget {
         SizedBox(
           height: 48.h,
           child: TextFormField(
+            validator: validator,
+            controller: textEditingController,
             obscureText: isObscureText,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: inputType,
@@ -94,15 +100,15 @@ class BaseInput extends StatelessWidget {
               ),
               prefixIcon: prefixIconData != null
                   ? Icon(
-                      prefixIconData,
-                      color: AppColors.uiGray_60,
-                    )
+                prefixIconData,
+                color: AppColors.uiGray_60,
+              )
                   : null,
               suffixIcon: suffixIconData != null
                   ? Icon(
-                      suffixIconData,
-                      color: AppColors.uiGray_60,
-                    )
+                suffixIconData,
+                color: AppColors.uiGray_60,
+              )
                   : null,
             ),
           ),

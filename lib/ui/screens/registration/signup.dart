@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:habitual/controllers/registration/sign_up_controller.dart';
+import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/app_divider_medium.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/primary_button.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/social_media_button.dart';
+import 'package:habitual/ui/screens/global_widgets/divider/app_divider_medium.dart';
 import 'package:habitual/ui/screens/global_widgets/input/base_input.dart';
 
 class Signup extends StatelessWidget {
-  const Signup({Key? key}) : super(key: key);
+  Signup({Key? key}) : super(key: key);
+
+  final SignUpController signUpController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +39,6 @@ class Signup extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: [
-                    ///CLOSE Button
-                    Positioned(
-                      top: 64.h,
-                      left: 0.w,
-                      child: const Icon(
-                        Icons.close,
-                        color: AppColors.uiGray_80,
-                      ),
-                    ),
-
                     ///TITLE
                     Positioned(
                       top: 64.h,
@@ -51,7 +48,22 @@ class Signup extends StatelessWidget {
                           fontWeight: FontWeight.w900,
                         ),
                       ),
-                    )
+                    ),
+
+                    ///CLOSE Button
+                    Positioned(
+                      top: 62.h,
+                      left: 0.w,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.offAllNamed(Routes.MY_APP);
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: AppColors.uiGray_80,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -69,20 +81,47 @@ class Signup extends StatelessWidget {
               ),
 
               Form(
+                key: signUpController.formKey,
                 child: Column(
                   children: [
+                    /// FIRST NAME INPUT
+                    BaseInput(
+                      labelLeft: "First Name",
+                      validator: signUpController.firstNameValidator,
+                      textEditingController:
+                          signUpController.firstNameController,
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+
+                    /// LAST NAME INPUT
+                    BaseInput(
+                      labelLeft: "Last Name",
+                      textEditingController:
+                          signUpController.lastNameController,
+                    ),
+                    SizedBox(
+                      height: 16.h,
+                    ),
+
                     /// EMAIL INPUT
-                    const BaseInput(
+                    BaseInput(
                       labelLeft: "Email",
+                      validator: signUpController.emailValidator,
+                      textEditingController: signUpController.emailController,
                     ),
                     SizedBox(
                       height: 16.h,
                     ),
 
                     /// PASSWORD INPUT
-                    const BaseInput(
+                    BaseInput(
                       isObscureText: true,
                       labelLeft: "Password",
+                      validator: signUpController.passwordValidator,
+                      textEditingController:
+                          signUpController.passwordController,
                     ),
                     SizedBox(
                       height: 16.h,
@@ -93,7 +132,10 @@ class Signup extends StatelessWidget {
                       children: [
                         Expanded(
                             child: PrimaryButton(
-                                text: "Get started", onClick: () {})),
+                                text: "Get started",
+                                onClick: () {
+                                  signUpController.signUpWithEmailAndPassword();
+                                })),
                       ],
                     ),
                     SizedBox(

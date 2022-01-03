@@ -25,6 +25,10 @@ class Assets {
       "assets/images/product/product_image_laptop.png";
   static const String productImage3 =
       "assets/images/product/product_image_controller.png";
-//app core global assets
 
+  //app core global assets
+  static const String wishlistEmpty =
+      "assets/images/wishlist/wishlist_empty.svg";
+  static const String interestsEmpty =
+      "assets/images/profile/interests_empty.svg";
 }

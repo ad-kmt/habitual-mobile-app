@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/app_divider_medium.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/primary_button.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/social_media_button.dart';
+import 'package:habitual/ui/screens/global_widgets/divider/app_divider_medium.dart';
 import 'package:habitual/ui/screens/global_widgets/input/base_input.dart';
 
 class Login extends StatelessWidget {
@@ -36,9 +39,14 @@ class Login extends StatelessWidget {
                     Positioned(
                       top: 64.h,
                       left: 0.w,
-                      child: const Icon(
-                        Icons.close,
-                        color: AppColors.uiGray_80,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: const Icon(
+                          Icons.close,
+                          color: AppColors.uiGray_80,
+                        ),
                       ),
                     ),
 
@@ -201,10 +209,15 @@ class Login extends StatelessWidget {
                   SizedBox(
                     width: 8.w,
                   ),
-                  Text(
-                    "Sign up",
-                    style: AppTextStyles.linkRegular
-                        .copyWith(fontWeight: FontWeight.w800),
+                  GestureDetector(
+                    onTap: () {
+                      Get.offAndToNamed(Routes.SIGNUP);
+                    },
+                    child: Text(
+                      "Sign up",
+                      style: AppTextStyles.linkRegular
+                          .copyWith(fontWeight: FontWeight.w800),
+                    ),
                   ),
                 ],
               ),

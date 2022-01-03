@@ -10,7 +10,6 @@ class AppBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: 80.h,
       decoration: BoxDecoration(
@@ -20,6 +19,7 @@ class AppBottomNavBar extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
+        backgroundColor: AppColors.uiWhite,
         selectedFontSize: 0.0,
         unselectedFontSize: 0.0,
         showSelectedLabels: false,
@@ -46,9 +46,14 @@ class AppBottomNavBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
-                radius: 20.r,
-                backgroundColor: AppColors.primaryColor,
-                child: SvgPicture.asset(Assets.searchIcon,color: Colors.black, height: 16.r,),),
+              radius: 20.r,
+              backgroundColor: AppColors.primaryColor,
+              child: SvgPicture.asset(
+                Assets.searchIcon,
+                color: Colors.black,
+                height: 16.r,
+              ),
+            ),
             label: 'Search',
             backgroundColor: AppColors.bgWhite,
           ),

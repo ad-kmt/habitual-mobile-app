@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:habitual/controllers/auth/auth_controller.dart';
+import 'package:habitual/controllers/my_app/my_app_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
+import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/dimensions.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/colored/colored_card_fixed.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_product_card_large.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_product_card_small.dart';
-import 'package:habitual/ui/screens/global_widgets/nav/bottom_nav_bar.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
+
+  final MyAppController myAppController = Get.find();
+  final AuthController authController = Get.find();
 
   final List<String> coloredCardTitleList = [
     "Shopping habits and interests",
@@ -38,7 +43,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const AppBottomNavBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,19 +98,30 @@ class Home extends StatelessWidget {
                 Positioned(
                   right: Dimensions.horizontalPadding,
                   top: 64.h,
-                  child: Column(
-                    children: const [
-                      CircleAvatar(
-                          backgroundColor: AppColors.bgWhite,
-                          child: Icon(
-                            Icons.person,
-                            color: AppColors.uiGray_80,
-                          )),
-                      Text(
-                        'Log in',
-                        style: AppTextStyles.bodySmallBold,
-                      )
-                    ],
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.LOGIN);
+                    },
+                    child: Obx(
+                      () => Column(
+                        children: [
+                          const CircleAvatar(
+                            backgroundColor: AppColors.bgWhite,
+                            child: Icon(
+                              Icons.person,
+                              color: AppColors.uiGray_80,
+                            ),
+                          ),
+                          Text(
+                            authController.user != null &&
+                                    myAppController.user != null
+                                ? myAppController.user!.firstName!
+                                : 'Log in',
+                            style: AppTextStyles.bodySmallBold,
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
 

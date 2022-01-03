@@ -5,7 +5,7 @@ import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/app_divider_light.dart';
+import 'package:habitual/ui/screens/global_widgets/divider/app_divider_light.dart';
 
 class CartProductCard extends StatelessWidget {
   const CartProductCard(
@@ -129,8 +129,8 @@ class CartProductCard extends StatelessWidget {
                 SizedBox(
                   width: 71.w,
                   child: Text(
-                    "x${(quantity * product.sellingPrice).toStringAsFixed(2)}",
-                    style: AppTextStyles.h6.copyWith(
+                    "\$${(quantity * product.sellingPrice).toStringAsFixed(2)}",
+                    style: AppTextStyles.h5.copyWith(
                         color: AppColors.textGray_80,
                         fontWeight: FontWeight.w800),
                     textAlign: TextAlign.end,
