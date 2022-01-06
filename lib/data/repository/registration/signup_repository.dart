@@ -1,4 +1,3 @@
-
 import 'package:habitual/data/models/user_model.dart';
 import 'package:habitual/data/provider/firebase_auth_api.dart';
 import 'package:habitual/data/provider/user_api.dart';

@@ -136,7 +136,7 @@ class Intro extends StatelessWidget {
 
   Obx buildDot({int? index}) {
     return Obx(
-          () => AnimatedContainer(
+      () => AnimatedContainer(
         duration: const Duration(milliseconds: 135),
         margin: const EdgeInsets.only(right: 5),
         height: 6,
