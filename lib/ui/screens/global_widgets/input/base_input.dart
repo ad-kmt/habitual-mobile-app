@@ -16,6 +16,7 @@ class BaseInput extends StatelessWidget {
     this.suffixIconData,
     this.validator,
     this.textEditingController,
+    this.enabled = true,
   }) : super(key: key);
 
   final String labelRight;
@@ -28,6 +29,7 @@ class BaseInput extends StatelessWidget {
   final IconData? suffixIconData;
   final FormFieldValidator<String>? validator;
   final TextEditingController? textEditingController;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +66,22 @@ class BaseInput extends StatelessWidget {
         SizedBox(
           height: 48.h,
           child: TextFormField(
+            enabled: enabled,
             validator: validator,
             controller: textEditingController,
             obscureText: isObscureText,
             textAlignVertical: TextAlignVertical.center,
             keyboardType: inputType,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: enabled ? AppColors.uiWhite : AppColors.uiGray_20,
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15.r),
+                borderSide: const BorderSide(
+                  color: AppColors.uiGray_20,
+                  width: 1.0,
+                ),
+              ),
               contentPadding: EdgeInsets.only(
                   left: prefixIconData == null ? 16.w : 0.w,
                   right: suffixIconData == null ? 16.w : 0.w),
@@ -100,15 +112,15 @@ class BaseInput extends StatelessWidget {
               ),
               prefixIcon: prefixIconData != null
                   ? Icon(
-                prefixIconData,
-                color: AppColors.uiGray_60,
-              )
+                      prefixIconData,
+                      color: AppColors.uiGray_60,
+                    )
                   : null,
               suffixIcon: suffixIconData != null
                   ? Icon(
-                suffixIconData,
-                color: AppColors.uiGray_60,
-              )
+                      suffixIconData,
+                      color: AppColors.uiGray_60,
+                    )
                   : null,
             ),
           ),

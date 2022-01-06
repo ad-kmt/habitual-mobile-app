@@ -14,4 +14,6 @@ abstract class Routes {
   // static const WISHLIST = '/wishlist';
   // static const PROFILE = '/profile';
   static const MY_APP = '/my-app';
+
+  static const EDIT_PROFILE = '/edit-profile';
 }

@@ -1,6 +1,5 @@
 //Firestore User Database API
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:habitual/data/models/user_model.dart';
@@ -38,7 +37,12 @@ class UserApiClient {
   }
 
   //get user model stream. Realtime approach
-  Stream<UserModel> getUserDataStream(String uid) {
+  Stream<UserModel> getUserDataStream(String? uid) {
     return userCollection.doc(uid).snapshots().map(_userModelFromSnapshot);
+  }
+
+  Future<UserModel> getUserData(String? uid) async {
+    DocumentSnapshot documentSnapshot = await userCollection.doc(uid).get();
+    return _userModelFromSnapshot(documentSnapshot);
   }
 }

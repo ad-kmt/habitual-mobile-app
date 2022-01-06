@@ -1,4 +1,3 @@
-import 'package:habitual/data/models/user_model.dart';
 import 'package:habitual/data/provider/firebase_auth_api.dart';
 
 class AuthRepository {
@@ -6,15 +5,15 @@ class AuthRepository {
 
   AuthRepository({required this.authApiClient});
 
-  Stream<UserModel?> getUserStream() {
+  Stream<String?> getUserStream() {
     return authApiClient.getUserFromFirebase();
   }
 
-  UserModel? getCurrentUser() {
-    return authApiClient.getCurrentUser();
+  String? getCurrentUser() {
+    return authApiClient.getCurrentUserId();
   }
 
-  Future<UserModel?> loginWithEmailAndPass(String email, String password) {
+  Future<String?> loginWithEmailAndPass(String email, String password) {
     return authApiClient.signInWithEmailAndPass(email, password);
   }
 
@@ -22,7 +21,7 @@ class AuthRepository {
     return authApiClient.signOut();
   }
 
-  Future<UserModel?> registerWithEmailAndPass(email, password) {
+  Future<String?> registerWithEmailAndPass(email, password) {
     return authApiClient.registerWithEmailAndPass(email, password);
   }
 }

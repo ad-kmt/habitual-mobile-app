@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:habitual/controllers/auth/auth_controller.dart';
 import 'package:habitual/controllers/my_app/my_app_controller.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -20,7 +19,6 @@ class AppMain extends StatelessWidget with CartBottomSheet {
   AppMain({Key? key}) : super(key: key);
 
   final MyAppController myAppController = Get.find();
-  final AuthController authController = Get.find();
 
   List<Widget> _buildScreens() {
     return [

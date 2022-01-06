@@ -117,7 +117,7 @@ class Intro extends StatelessWidget {
                       child: TertiaryButton(
                         text: Strings.skip,
                         onClick: () {
-                          if (authController.user == null) {
+                          if (authController.userIdRx.value == null) {
                             log("User is not authenticated. Going to SIGN UP page");
                             Get.toNamed(Routes.INTRO_SIGN_UP);
                           } else {

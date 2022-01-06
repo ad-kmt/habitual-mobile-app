@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:habitual/controllers/auth/auth_controller.dart';
 import 'package:habitual/controllers/my_app/my_app_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/routes/app_pages.dart';
@@ -16,7 +15,6 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final MyAppController myAppController = Get.find();
-  final AuthController authController = Get.find();
 
   final List<String> coloredCardTitleList = [
     "Shopping habits and interests",
@@ -100,7 +98,9 @@ class Home extends StatelessWidget {
                   top: 64.h,
                   child: GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.LOGIN);
+                      myAppController.user != null
+                          ? Get.toNamed(Routes.EDIT_PROFILE)
+                          : Get.toNamed(Routes.LOGIN);
                     },
                     child: Obx(
                       () => Column(
@@ -113,10 +113,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            authController.user != null &&
-                                    myAppController.user != null
-                                ? myAppController.user!.firstName!
-                                : 'Log in',
+                            myAppController.user?.firstName ?? 'Log in',
                             style: AppTextStyles.bodySmallBold,
                           ),
                         ],

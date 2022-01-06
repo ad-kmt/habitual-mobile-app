@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:habitual/controllers/registration/login_controller.dart';
+import 'package:habitual/data/utils/validators.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -13,7 +16,9 @@ import 'package:habitual/ui/screens/global_widgets/divider/app_divider_medium.da
 import 'package:habitual/ui/screens/global_widgets/input/base_input.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
+
+  LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -77,20 +82,25 @@ class Login extends StatelessWidget {
               ),
 
               Form(
+                key: loginController.formKey,
                 child: Column(
                   children: [
                     /// EMAIL INPUT
-                    const BaseInput(
+                    BaseInput(
                       labelLeft: "Email",
+                      validator: Validation.emailValidator,
+                      textEditingController: loginController.emailController,
                     ),
                     SizedBox(
                       height: 16.h,
                     ),
 
                     /// PASSWORD INPUT
-                    const BaseInput(
+                    BaseInput(
                       isObscureText: true,
                       labelLeft: "Password",
+                      validator: Validation.passwordValidator,
+                      textEditingController: loginController.passwordController,
                     ),
                     SizedBox(
                       height: 16.h,
@@ -100,8 +110,13 @@ class Login extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                            child:
-                                PrimaryButton(text: "Login", onClick: () {})),
+                          child: PrimaryButton(
+                            text: "Login",
+                            onClick: () {
+                              loginController.loginWithEmailAndPassword();
+                            },
+                          ),
+                        ),
                       ],
                     ),
                     SizedBox(

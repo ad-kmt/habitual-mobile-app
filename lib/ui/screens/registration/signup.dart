@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:habitual/controllers/registration/sign_up_controller.dart';
+import 'package:habitual/data/utils/validators.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -87,7 +88,7 @@ class Signup extends StatelessWidget {
                     /// FIRST NAME INPUT
                     BaseInput(
                       labelLeft: "First Name",
-                      validator: signUpController.firstNameValidator,
+                      validator: Validation.firstNameValidator,
                       textEditingController:
                           signUpController.firstNameController,
                     ),
@@ -108,7 +109,7 @@ class Signup extends StatelessWidget {
                     /// EMAIL INPUT
                     BaseInput(
                       labelLeft: "Email",
-                      validator: signUpController.emailValidator,
+                      validator: Validation.emailValidator,
                       textEditingController: signUpController.emailController,
                     ),
                     SizedBox(
@@ -119,7 +120,7 @@ class Signup extends StatelessWidget {
                     BaseInput(
                       isObscureText: true,
                       labelLeft: "Password",
-                      validator: signUpController.passwordValidator,
+                      validator: Validation.passwordValidator,
                       textEditingController:
                           signUpController.passwordController,
                     ),

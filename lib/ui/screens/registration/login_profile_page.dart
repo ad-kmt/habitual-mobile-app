@@ -31,7 +31,7 @@ class LoginProfilePage extends StatelessWidget with CartBottomSheet {
                   Text(
                     "Profile",
                     style:
-                    AppTextStyles.h4.copyWith(fontWeight: FontWeight.w700),
+                        AppTextStyles.h4.copyWith(fontWeight: FontWeight.w700),
                   ),
                   SizedBox(
                     height: 16.h,

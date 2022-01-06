@@ -1,23 +1,23 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:habitual/data/models/user_model.dart';
+import 'package:habitual/data/provider/user_api.dart';
 
 class FirebaseAuthApiClient {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final UserApiClient _userApiClient = UserApiClient();
 
   //Create UserModel object based on Firebase User
-  UserModel? _userFromFirebaseUser(User? user) {
-    return user != null ? UserModel(uid: user.uid) : null;
+  String? _userFromFirebaseUser(User? user) {
+    return user?.uid;
   }
 
-  Stream<UserModel?> getUserFromFirebase() {
+  Stream<String?> getUserFromFirebase() {
     return _auth.authStateChanges().map(_userFromFirebaseUser);
   }
 
   //Sign in with email and password
-  Future<UserModel?> signInWithEmailAndPass(
-      String email, String password) async {
+  Future<String?> signInWithEmailAndPass(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
@@ -30,7 +30,7 @@ class FirebaseAuthApiClient {
   }
 
   //Register with email and password
-  Future<UserModel?> registerWithEmailAndPass(
+  Future<String?> registerWithEmailAndPass(
       String email, String password) async {
     try {
       log("Registring on Firebase with Email and Password");
@@ -57,7 +57,7 @@ class FirebaseAuthApiClient {
     }
   }
 
-  UserModel? getCurrentUser() {
+  String? getCurrentUserId() {
     return _userFromFirebaseUser(_auth.currentUser);
   }
 }

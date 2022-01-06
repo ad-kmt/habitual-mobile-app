@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:habitual/data/temp/static_data.dart';
+import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';

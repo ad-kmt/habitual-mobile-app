@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:habitual/data/temp/static_data.dart';
+import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import '../divider/app_divider_light.dart';
+
 import '../buttons/primary_button.dart';
 import '../cards/cart/cart_product_card.dart';
+import '../divider/app_divider_light.dart';
 
 mixin CartBottomSheet on StatelessWidget {
   void showCartBottomSheet(BuildContext context) {
