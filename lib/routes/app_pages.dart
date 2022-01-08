@@ -9,6 +9,7 @@ import 'package:habitual/ui/screens/app_main.dart';
 import 'package:habitual/ui/screens/intro/intro.dart';
 import 'package:habitual/ui/screens/intro/intro_signup.dart';
 import 'package:habitual/ui/screens/intro/signup_prompt.dart';
+import 'package:habitual/ui/screens/product/product.dart';
 import 'package:habitual/ui/screens/profile/edit_profile.dart';
 import 'package:habitual/ui/screens/registration/login.dart';
 import 'package:habitual/ui/screens/registration/login_profile_page.dart';
@@ -60,6 +61,11 @@ class AppPages {
       name: Routes.EDIT_PROFILE,
       page: () => EditProfile(),
       binding: EditProfileBinding(),
+    ),
+
+    GetPage(
+      name: Routes.PRODUCT,
+      page: () => Product(),
     )
   ];
 }

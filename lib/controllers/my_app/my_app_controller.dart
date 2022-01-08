@@ -33,12 +33,12 @@ class MyAppController extends GetxController {
     ever(authController.userIdRx, _bindUserDataStream);
   }
 
-  _bindUserDataStream(userAuth) {
-    if (userAuth == null) {
+  _bindUserDataStream(userId) {
+    if (userId == null) {
       user = null;
     } else {
-      _user.bindStream(myAppRepository.getUserDataStream(userAuth.uid));
-      log("User Data stream binded for user id: ${userAuth.uid}");
+      _user.bindStream(myAppRepository.getUserDataStream(userId));
+      log("User Data stream binded for user id: $userId");
     }
   }
 }

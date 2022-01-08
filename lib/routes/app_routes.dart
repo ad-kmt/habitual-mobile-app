@@ -16,4 +16,6 @@ abstract class Routes {
   static const MY_APP = '/my-app';
 
   static const EDIT_PROFILE = '/edit-profile';
+
+  static const PRODUCT = '/product';
 }
