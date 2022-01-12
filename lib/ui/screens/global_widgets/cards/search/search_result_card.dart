@@ -5,10 +5,10 @@ import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
-import 'package:habitual/ui/screens/global_widgets/pills/discount.dart';
+import 'package:habitual/ui/screens/global_widgets/pills/discount_pill_primary.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/staff_pick.dart';
 
-import '../../rating.dart';
+import '../../rating/rating_small.dart';
 
 class SearchResultCard extends StatelessWidget {
   const SearchResultCard({Key? key, required this.product}) : super(key: key);
@@ -46,7 +46,7 @@ class SearchResultCard extends StatelessWidget {
             children: [
               /// NAME
               Text(
-                product.productName,
+                product.name,
                 style: AppTextStyles.bodyRegular
                     .copyWith(color: AppColors.textGray_80),
                 overflow: TextOverflow.ellipsis,
@@ -89,7 +89,7 @@ class SearchResultCard extends StatelessWidget {
 
                   /// DISCOUNT
                   if (product.discount != 0)
-                    DiscountPill(discountPercentage: product.discount)
+                    DiscountPillPrimary(discountPercentage: product.discount)
                 ],
               ),
               SizedBox(
@@ -103,7 +103,7 @@ class SearchResultCard extends StatelessWidget {
                   /// RATING, CATEGORY
                   Row(
                     children: [
-                      const Rating(value: 4.5),
+                      const RatingSmall(value: 4.5),
                       SizedBox(
                         width: 8.w,
                       ),

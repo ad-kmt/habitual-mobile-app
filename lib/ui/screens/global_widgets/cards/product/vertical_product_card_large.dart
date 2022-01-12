@@ -6,9 +6,9 @@ import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/wishlist_icon_button.dart';
-import 'package:habitual/ui/screens/global_widgets/pills/discount.dart';
+import 'package:habitual/ui/screens/global_widgets/pills/discount_pill_primary.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/staff_pick.dart';
-import 'package:habitual/ui/screens/global_widgets/rating.dart';
+import 'package:habitual/ui/screens/global_widgets/rating/rating_small.dart';
 
 class VerticalProductCardLarge extends StatelessWidget {
   const VerticalProductCardLarge({Key? key, required this.product})
@@ -66,7 +66,7 @@ class VerticalProductCardLarge extends StatelessWidget {
               children: [
                 /// NAME
                 Text(
-                  product.productName,
+                  product.name,
                   style:
                       AppTextStyles.h4.copyWith(color: AppColors.textGray_80),
                   overflow: TextOverflow.ellipsis,
@@ -109,7 +109,7 @@ class VerticalProductCardLarge extends StatelessWidget {
 
                     /// DISCOUNT
                     if (product.discount != 0)
-                      DiscountPill(discountPercentage: product.discount)
+                      DiscountPillPrimary(discountPercentage: product.discount)
                   ],
                 ),
                 SizedBox(
@@ -117,9 +117,9 @@ class VerticalProductCardLarge extends StatelessWidget {
                 ),
 
                 /// DESCRIPTION
-                if (product.productDescription.isNotEmpty)
+                if (product.description.isNotEmpty)
                   Text(
-                    product.productDescription,
+                    product.description,
                     maxLines: 2,
                     style: AppTextStyles.bodySmall.copyWith(
                       color: AppColors.uiGray_60,
@@ -137,7 +137,7 @@ class VerticalProductCardLarge extends StatelessWidget {
                     /// RATING, CATEGORY
                     Row(
                       children: [
-                        const Rating(value: 4.5),
+                        const RatingSmall(value: 4.5),
                         SizedBox(
                           width: 2.w,
                         ),

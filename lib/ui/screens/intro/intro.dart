@@ -14,6 +14,7 @@ import 'package:habitual/ui/constants/strings.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/primary_button.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/tertiary_button.dart';
 import 'package:habitual/ui/screens/global_widgets/loading.dart';
+import 'package:habitual/ui/screens/global_widgets/page/page_dots_primary.dart';
 import 'package:habitual/ui/screens/intro/widgets/intro_content.dart';
 
 class Intro extends StatelessWidget {
@@ -84,13 +85,17 @@ class Intro extends StatelessWidget {
                       bottom: 134.h,
                       child: Column(
                         children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(
-                              introTextData.length,
-                              (index) => buildDot(index: index),
-                            ),
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: List.generate(
+                          //     introTextData.length,
+                          //     (index) => buildDot(index: index),
+                          //   ),
+                          // ),
+                          PageDotsPrimary(
+                            count: introTextData.length,
+                            controller: introController,
+                          )
                         ],
                       ),
                     ),
@@ -134,22 +139,22 @@ class Intro extends StatelessWidget {
     });
   }
 
-  Obx buildDot({int? index}) {
-    return Obx(
-      () => AnimatedContainer(
-        duration: const Duration(milliseconds: 135),
-        margin: const EdgeInsets.only(right: 5),
-        height: 6,
-        width: introController.currentPage == index ? 20 : 6,
-        decoration: BoxDecoration(
-          color: introController.currentPage == index
-              ? AppColors.primaryColor
-              : AppColors.uiGray_40,
-          borderRadius: BorderRadius.circular(3),
-        ),
-      ),
-    );
-  }
+  // Obx buildDot({int? index}) {
+  //   return Obx(
+  //     () => AnimatedContainer(
+  //       duration: const Duration(milliseconds: 135),
+  //       margin: const EdgeInsets.only(right: 5),
+  //       height: 6,
+  //       width: introController.currentPage == index ? 20 : 6,
+  //       decoration: BoxDecoration(
+  //         color: introController.currentPage == index
+  //             ? AppColors.primaryColor
+  //             : AppColors.uiGray_40,
+  //         borderRadius: BorderRadius.circular(3),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   void printScreenInformation() {
     print('Device width dp:${1.sw}dp');

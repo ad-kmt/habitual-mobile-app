@@ -7,7 +7,7 @@ import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/add_to_cart_button.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/wishlist_icon_button.dart';
-import 'package:habitual/ui/screens/global_widgets/pills/discount.dart';
+import 'package:habitual/ui/screens/global_widgets/pills/discount_pill_primary.dart';
 
 class WishlistCardSmall extends StatelessWidget {
   const WishlistCardSmall({Key? key, required this.product}) : super(key: key);
@@ -55,7 +55,7 @@ class WishlistCardSmall extends StatelessWidget {
             children: [
               /// NAME
               Text(
-                product.productName,
+                product.name,
                 style: AppTextStyles.bodyRegular
                     .copyWith(color: AppColors.textGray_80),
                 overflow: TextOverflow.ellipsis,
@@ -95,7 +95,7 @@ class WishlistCardSmall extends StatelessWidget {
 
                   /// DISCOUNT
                   if (product.discount != 0)
-                    DiscountPill(discountPercentage: product.discount)
+                    DiscountPillPrimary(discountPercentage: product.discount)
                 ],
               ),
               SizedBox(

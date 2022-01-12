@@ -4,7 +4,9 @@ import 'package:habitual/bindings/edit_profile_binding.dart';
 import 'package:habitual/bindings/intro_binding.dart';
 import 'package:habitual/bindings/login_binding.dart';
 import 'package:habitual/bindings/my_app_binding.dart';
+import 'package:habitual/bindings/product_binding.dart';
 import 'package:habitual/bindings/signup_binding.dart';
+import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/ui/screens/app_main.dart';
 import 'package:habitual/ui/screens/intro/intro.dart';
 import 'package:habitual/ui/screens/intro/intro_signup.dart';
@@ -18,7 +20,7 @@ import 'package:habitual/ui/screens/registration/signup.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.INTRO;
+  static const INITIAL = Routes.PRODUCT;
 
   static final routes = [
     // GetPage(name: Routes.HOME, page: () => Home()),
@@ -65,7 +67,10 @@ class AppPages {
 
     GetPage(
       name: Routes.PRODUCT,
-      page: () => Product(),
+      page: () => Product(
+        product: StaticData.productModel,
+      ),
+      binding: ProductBinding(),
     )
   ];
 }

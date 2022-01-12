@@ -30,10 +30,10 @@ class Home extends StatelessWidget {
   ];
 
   final ProductModel productModel = ProductModel(
-      productName: "Product Name",
+      name: "Product Name",
       sellingPrice: 69.99,
       actualPrice: 79.99,
-      productDescription:
+      description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
       isStaffPick: true);

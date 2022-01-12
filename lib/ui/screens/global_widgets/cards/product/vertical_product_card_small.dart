@@ -8,7 +8,7 @@ import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/buttons/icon_buttons/wishlist_icon_button.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/staff_pick.dart';
 
-import '../../rating.dart';
+import '../../rating/rating_small.dart';
 
 class VerticalProductCardSmall extends StatelessWidget {
   const VerticalProductCardSmall({Key? key, required this.product})
@@ -65,7 +65,7 @@ class VerticalProductCardSmall extends StatelessWidget {
               children: [
                 /// NAME
                 Text(
-                  product.productName,
+                  product.name,
                   style: AppTextStyles.bodyRegular
                       .copyWith(color: AppColors.textGray_80),
                   overflow: TextOverflow.ellipsis,
@@ -113,7 +113,7 @@ class VerticalProductCardSmall extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     /// RATING, CATEGORY
-                    const Rating(value: 4.5),
+                    const RatingSmall(value: 4.5),
 
                     /// STAFF PICK PILL
                     if (product.isStaffPick) const StaffPickPill(),

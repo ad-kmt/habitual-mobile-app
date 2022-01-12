@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
@@ -6,24 +5,27 @@ part 'product_model.g.dart';
 /// TODO: make fields private, mention required fields in constructor
 @JsonSerializable()
 class ProductModel {
-
-  String productName;
+  String name;
   double sellingPrice;
   double actualPrice;
   late double discount;
-  String productDescription;
+  String description;
   double? rating;
   String category;
   bool isStaffPick;
 
-
-
-  ProductModel({required this.productName, required this.sellingPrice, required this.actualPrice,
-    this.productDescription="", this.rating, this.category="", this.isStaffPick=false}){
-    if(sellingPrice == actualPrice){
+  ProductModel(
+      {required this.name,
+      required this.sellingPrice,
+      required this.actualPrice,
+      this.description = "",
+      this.rating,
+      this.category = "",
+      this.isStaffPick = false}) {
+    if (sellingPrice == actualPrice) {
       discount = 0;
     } else {
-      discount = ((actualPrice - sellingPrice)/actualPrice)*100;
+      discount = ((actualPrice - sellingPrice) / actualPrice) * 100;
     }
   }
 
@@ -31,5 +33,4 @@ class ProductModel {
       _$ProductModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
-
 }

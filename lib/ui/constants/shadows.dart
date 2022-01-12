@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'colors.dart';
 
 class AppShadows {
-
   static List<BoxShadow> cardShadowMedium = [
     BoxShadow(
       color: Colors.black.withOpacity(0.04),
@@ -73,6 +71,14 @@ class AppShadows {
     ),
   ];
 
+  static List<BoxShadow> bottomNavShadow = [
+    BoxShadow(
+      color: Colors.black.withOpacity(0.1),
+      blurRadius: 20,
+      offset: const Offset(0, -1),
+    ),
+  ];
+
   static List<BoxShadow> imageShadowDefault = [
     BoxShadow(
       color: Colors.black.withOpacity(0.15),
@@ -112,8 +118,4 @@ class AppShadows {
       offset: const Offset(0, 3),
     ),
   ];
-
-
-
-
 }

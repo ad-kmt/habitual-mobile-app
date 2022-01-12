@@ -85,7 +85,7 @@ class CartProductCard extends StatelessWidget {
                     /// NAME
                     SizedBox(
                       child: Text(
-                        product.productName,
+                        product.name,
                         style: AppTextStyles.bodyRegular
                             .copyWith(color: AppColors.textGray_80),
                         overflow: TextOverflow.ellipsis,

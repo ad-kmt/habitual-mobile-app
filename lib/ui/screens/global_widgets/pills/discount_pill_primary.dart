@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 
-class DiscountPill extends StatelessWidget {
-  const DiscountPill({Key? key, required this.discountPercentage})
+class DiscountPillPrimary extends StatelessWidget {
+  const DiscountPillPrimary({Key? key, required this.discountPercentage})
       : super(key: key);
 
   final double discountPercentage;
