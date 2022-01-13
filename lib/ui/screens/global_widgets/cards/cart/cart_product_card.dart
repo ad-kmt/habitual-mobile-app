@@ -66,7 +66,7 @@ class CartProductCard extends StatelessWidget {
                 Container(
                   height: 68.h,
                   width: 68.h,
-                  child: Image.asset(Assets.productImage2),
+                  child: Image.asset(Assets.productImageLaptop),
                   padding: EdgeInsets.all(8.r),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(5.r)),

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitual/controllers/my_app/my_app_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
+import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/dimensions.dart';
@@ -10,6 +11,7 @@ import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/colored/colored_card_fixed.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_product_card_large.dart';
 import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_product_card_small.dart';
+import 'package:habitual/ui/screens/product/args/product_screen_args.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -28,15 +30,6 @@ class Home extends StatelessWidget {
     AppColors.accentIndigo,
     AppColors.accentOrange
   ];
-
-  final ProductModel productModel = ProductModel(
-      name: "Product Name",
-      sellingPrice: 69.99,
-      actualPrice: 79.99,
-      description:
-          "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
-      category: "Category",
-      isStaffPick: true);
 
   @override
   Widget build(BuildContext context) {
@@ -132,18 +125,30 @@ class Home extends StatelessWidget {
                         height: 360.h,
                         child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
-                          itemCount: 5,
+                          itemCount: StaticData.products.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             double paddingLeft = (index == 0) ? 16.w : 0;
                             double paddingRight = (index == 4) ? 16.w : 0;
+
+                            ProductModel product = StaticData.products[
+                                StaticData.products.length - 1 - index];
                             return Padding(
                               padding: EdgeInsets.fromLTRB(
                                   paddingLeft + 8, 8, paddingRight + 8, 0),
                               child: Align(
                                 alignment: Alignment.topLeft,
-                                child: VerticalProductCardLarge(
-                                  product: productModel,
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.PRODUCT,
+                                      arguments:
+                                          ProductScreenArguments(product),
+                                    );
+                                  },
+                                  child: VerticalProductCardLarge(
+                                    product: product,
+                                  ),
                                 ),
                               ),
                             );
@@ -188,7 +193,7 @@ class Home extends StatelessWidget {
               height: 327.h,
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: 5,
+                itemCount: StaticData.products.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   double paddingLeft = (index == 0) ? 16.w : 0;
@@ -197,10 +202,20 @@ class Home extends StatelessWidget {
                     padding: EdgeInsets.fromLTRB(
                         paddingLeft + 8, 24, paddingRight + 8, 0),
                     child: Align(
-                        alignment: Alignment.topLeft,
+                      alignment: Alignment.topLeft,
+                      child: InkWell(
+                        onTap: () {
+                          Get.toNamed(
+                            Routes.PRODUCT,
+                            arguments: ProductScreenArguments(
+                                StaticData.products[index]),
+                          );
+                        },
                         child: VerticalProductCardSmall(
-                          product: productModel,
-                        )),
+                          product: StaticData.products[index],
+                        ),
+                      ),
+                    ),
                   );
                 },
               ),

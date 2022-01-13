@@ -13,6 +13,7 @@ class ProductModel {
   double? rating;
   String category;
   bool isStaffPick;
+  String? imageSrc;
 
   ProductModel(
       {required this.name,
@@ -21,7 +22,8 @@ class ProductModel {
       this.description = "",
       this.rating,
       this.category = "",
-      this.isStaffPick = false}) {
+      this.isStaffPick = false,
+      this.imageSrc}) {
     if (sellingPrice == actualPrice) {
       discount = 0;
     } else {

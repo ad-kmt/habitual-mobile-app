@@ -19,12 +19,20 @@ class Assets {
   static const String introImage4 = "assets/images/intro/intro_4.svg";
 
   //product images
-  static const String productImage1 =
+  static const String productImageHeadphone =
       "assets/images/product/product_image_headphone.png";
-  static const String productImage2 =
+  static const String productImageLaptop =
       "assets/images/product/product_image_laptop.png";
-  static const String productImage3 =
+  static const String productImageControllerHalf =
       "assets/images/product/product_image_controller.png";
+  static const String productImageVR =
+      "assets/images/product/product_image_vr.png";
+  static const String productImageIphone =
+      "assets/images/product/product_image_iphone.png";
+  static const String productImageController =
+      "assets/images/product/product_image_controller2.png";
+  static const String productImageAirpods =
+      "assets/images/product/product_image_airpods.png";
 
   //app core global assets
   static const String wishlistEmpty =

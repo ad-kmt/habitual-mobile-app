@@ -27,7 +27,7 @@ class SearchResultCard extends StatelessWidget {
             Container(
               height: 112.r,
               width: 112.r,
-              child: Image.asset(Assets.productImage2),
+              child: Image.asset(Assets.productImageLaptop),
               padding: EdgeInsets.all(18.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10.r)),

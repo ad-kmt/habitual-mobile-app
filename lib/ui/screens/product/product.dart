@@ -2,25 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:habitual/controllers/product/product_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
-import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 import 'package:habitual/ui/screens/global_widgets/page/page_dots_secondary.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/discount_pill_secondary.dart';
 import 'package:habitual/ui/screens/global_widgets/rating/rating_long.dart';
+import 'package:habitual/ui/screens/product/args/product_screen_args.dart';
 
 class Product extends StatelessWidget {
-  Product({Key? key, required this.product}) : super(key: key);
+  Product({Key? key}) : super(key: key);
 
   ProductController productController = Get.find();
 
-  final ProductModel product;
-
   @override
   Widget build(BuildContext context) {
+    final ProductScreenArguments args = Get.arguments as ProductScreenArguments;
+    final ProductModel product = args.productModel;
+
     return Scaffold(
       backgroundColor: AppColors.bgWhite,
       bottomNavigationBar: Container(
@@ -52,6 +54,7 @@ class Product extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+
                         /// SELLING PRICE
                         Text(
                           "\$${product.sellingPrice.toStringAsFixed(2)}",
@@ -143,8 +146,13 @@ class Product extends StatelessWidget {
                         productController.currentPage = value;
                       },
                       itemCount: 3,
-                      itemBuilder: (context, index) =>
-                          Image.asset(Assets.productImage1),
+                      itemBuilder: (context, index) => product.imageSrc != null
+                          ? Image.asset(product.imageSrc!)
+                          : Icon(
+                              Icons.image,
+                              color: AppColors.uiGray_40,
+                              size: 50.r,
+                            ),
                     ),
                     Positioned(
                         bottom: 24.h,

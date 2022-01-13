@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habitual/data/models/product_model.dart';
-import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
@@ -33,9 +32,14 @@ class VerticalProductCardSmall extends StatelessWidget {
             children: [
               /// IMAGE
               Container(
-                child: const Image(
-                  image: AssetImage(Assets.productImage2),
-                ),
+                width: double.infinity,
+                child: product.imageSrc != null
+                    ? Image.asset(product.imageSrc!)
+                    : Icon(
+                        Icons.image,
+                        color: AppColors.uiGray_40,
+                        size: 50.r,
+                      ),
                 height: 136.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
