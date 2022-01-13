@@ -68,7 +68,7 @@ class AppPages {
     GetPage(
       name: Routes.PRODUCT,
       page: () => Product(
-        product: StaticData.productModel,
+        product: StaticData.productHeadphone,
       ),
       binding: ProductBinding(),
     )

@@ -69,9 +69,12 @@ class CartBottomSheetLayout extends StatelessWidget {
                 height: 20.h,
               ),
               const AppDividerLight(),
-              CartProductCard(product: StaticData.productModel, quantity: 1),
-              CartProductCard(product: StaticData.productModel, quantity: 3),
-              CartProductCard(product: StaticData.productModel, quantity: 2),
+              CartProductCard(
+                  product: StaticData.productHeadphone, quantity: 1),
+              CartProductCard(
+                  product: StaticData.productHeadphone, quantity: 3),
+              CartProductCard(
+                  product: StaticData.productHeadphone, quantity: 2),
               Padding(
                 padding: EdgeInsets.fromLTRB(24.r, 24.r, 24.r, 20.r),
                 child: Row(

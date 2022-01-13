@@ -155,17 +155,17 @@ class Wishlist extends StatelessWidget {
                                     height: 24.h,
                                   ),
                                   WishlistCardSmall(
-                                      product: StaticData.productModel),
+                                      product: StaticData.productHeadphone),
                                   SizedBox(
                                     height: 16.w,
                                   ),
                                   WishlistCardSmall(
-                                      product: StaticData.productModel),
+                                      product: StaticData.productHeadphone),
                                   SizedBox(
                                     height: 16.w,
                                   ),
                                   WishlistCardSmall(
-                                      product: StaticData.productModel),
+                                      product: StaticData.productHeadphone),
                                 ],
                               ),
                             ),
@@ -203,12 +203,12 @@ class Wishlist extends StatelessWidget {
                                     height: 24.h,
                                   ),
                                   WishlistCardSmall(
-                                      product: StaticData.productModel),
+                                      product: StaticData.productHeadphone),
                                   SizedBox(
                                     height: 16.w,
                                   ),
                                   WishlistCardSmall(
-                                      product: StaticData.productModel),
+                                      product: StaticData.productHeadphone),
                                 ],
                               ),
                             ),
@@ -266,7 +266,7 @@ class Wishlist extends StatelessWidget {
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: VerticalProductCardLarge(
-                                product: StaticData.productModel,
+                                product: StaticData.productHeadphone,
                               ),
                             ),
                           );
