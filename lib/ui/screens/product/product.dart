@@ -54,7 +54,6 @@ class Product extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-
                         /// SELLING PRICE
                         Text(
                           "\$${product.sellingPrice.toStringAsFixed(2)}",
