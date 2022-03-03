@@ -100,7 +100,7 @@ class Home extends StatelessWidget {
                           : Get.toNamed(Routes.LOGIN);
                     },
                     child: Obx(
-                          () => Column(
+                      () => Column(
                         children: [
                           const CircleAvatar(
                             backgroundColor: AppColors.bgWhite,
@@ -136,7 +136,7 @@ class Home extends StatelessWidget {
                             double paddingRight = (index == 4) ? 16.w : 0;
 
                             ProductModel product = StaticData.products[
-                            StaticData.products.length - 1 - index];
+                                StaticData.products.length - 1 - index];
                             return Padding(
                               padding: EdgeInsets.fromLTRB(
                                   paddingLeft + 8, 8, paddingRight + 8, 0),
@@ -147,7 +147,7 @@ class Home extends StatelessWidget {
                                     Get.toNamed(
                                       Routes.PRODUCT,
                                       arguments:
-                                      ProductScreenArguments(product),
+                                          ProductScreenArguments(product),
                                     );
                                   },
                                   child: VerticalProductCardLarge(
