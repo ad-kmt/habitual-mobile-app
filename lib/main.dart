@@ -6,14 +6,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:habitual/data/provider/user_api.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/app_theme.dart';
 import 'package:habitual/ui/constants/strings.dart';
 
 import 'bindings/intro_binding.dart';
-import 'controllers/auth/auth_controller.dart';
+import 'controllers/global/auth_controller.dart';
 import 'data/provider/firebase_auth_api.dart';
-import 'data/repository/auth/auth_repository.dart';
+import 'data/repository/auth_repository.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,6 +25,7 @@ void main() async {
   Get.put(AuthController(
     authRepository: AuthRepository(
       authApiClient: FirebaseAuthApiClient(),
+      userApiClient: UserApiClient(),
     ),
   ));
   SystemChrome.setPreferredOrientations(
@@ -38,19 +40,32 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: () => GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: Strings.appName,
-        theme: themeData,
-        locale: const Locale('en', 'IN'),
-        getPages: AppPages.routes,
-        initialRoute: AppPages.INITIAL,
-        initialBinding: IntroBinding(),
-        // unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
-        defaultTransition: Transition.fade,
-        // locale: Locale(_languageStore.locale),
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: () => GetMaterialApp(
+          builder: (context, widget) {
+            ScreenUtil.setContext(context);
+            return MediaQuery(
+              //Setting font does not change with system font size
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+              child: widget!,
+            );
+          },
+          debugShowCheckedModeBanner: false,
+          title: Strings.appName,
+          theme: themeData,
+          locale: const Locale('en', 'IN'),
+          getPages: AppPages.routes,
+          initialRoute: AppPages.INITIAL,
+          initialBinding: IntroBinding(),
+          // unknownRoute: GetPage(name: '/notfound', page: () => UnknownRoutePage()),
+          defaultTransition: Transition.fade,
+          // locale: Locale(_languageStore.locale),
+        ),
       ),
     );
   }

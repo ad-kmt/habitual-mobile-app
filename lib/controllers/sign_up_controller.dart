@@ -2,12 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/data/models/user_model.dart';
-import 'package:habitual/data/repository/registration/signup_repository.dart';
+import 'package:habitual/data/repository/signup_repository.dart';
 import 'package:habitual/routes/app_pages.dart';
 
 class SignUpController extends GetxController {
   final SignUpRepository signUpRepository;
+
+  final AuthController authController = Get.find();
 
   //form key
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -32,7 +35,7 @@ class SignUpController extends GetxController {
     if (formKey.currentState!.validate()) {
       log("Email and Password Validated. Signing up now");
       log("Email: ${emailController.text} Pass: ${passwordController.text}");
-      String? userId = await signUpRepository.registerWithEmailAndPass(
+      String? userId = await authController.registerWithEmailAndPass(
           emailController.text, passwordController.text);
       // log(result.toString());
       if (userId != null) {

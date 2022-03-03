@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:habitual/controllers/registration/login_controller.dart';
+import 'package:habitual/controllers/login_controller.dart';
 import 'package:habitual/data/utils/validators.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';

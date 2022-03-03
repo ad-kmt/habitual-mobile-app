@@ -6,4 +6,10 @@ class ProductController extends GetxController {
   get currentPage => _currentPage.value;
 
   set currentPage(val) => _currentPage.value = val;
+
+  final _isProductInCart = false.obs;
+
+  get isProductInCart => _isProductInCart.value;
+
+  set isProductInCart(val) => _isProductInCart.value = val;
 }

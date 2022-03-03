@@ -3,6 +3,7 @@ import 'package:habitual/ui/constants/assets.dart';
 
 class StaticData {
   static ProductModel productHeadphone = ProductModel(
+      id: "1",
       name: "Bose Headphone",
       sellingPrice: 69.99,
       rating: 4.5,
@@ -14,6 +15,7 @@ class StaticData {
       isStaffPick: true);
 
   static ProductModel productLaptop = ProductModel(
+      id: "2",
       name: "Macbook Air",
       sellingPrice: 999,
       rating: 4.8,
@@ -25,6 +27,7 @@ class StaticData {
       isStaffPick: true);
 
   static ProductModel productVR = ProductModel(
+      id: "3",
       name: "Oculus VR Headset",
       sellingPrice: 599,
       rating: 3.9,
@@ -36,6 +39,7 @@ class StaticData {
       isStaffPick: true);
 
   static ProductModel productIphone = ProductModel(
+      id: "3",
       name: "Iphone 13 Pro",
       sellingPrice: 1299,
       rating: 4.4,
@@ -47,6 +51,7 @@ class StaticData {
       isStaffPick: true);
 
   static ProductModel productController = ProductModel(
+      id: "4",
       name: "Xbox Controller",
       sellingPrice: 159,
       rating: 3.4,
@@ -58,6 +63,7 @@ class StaticData {
       isStaffPick: true);
 
   static ProductModel productAirpods = ProductModel(
+      id: "5",
       name: "Apple airpods",
       sellingPrice: 229,
       rating: 3.8,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:habitual/data/models/cart_model.dart';
 import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
@@ -19,7 +20,7 @@ mixin CartBottomSheet on StatelessWidget {
         backgroundColor: Colors.white,
         context: context,
         builder: (BuildContext context) {
-          return const CartBottomSheetLayout();
+          return CartBottomSheetLayout();
         },
       );
     } else {
@@ -29,7 +30,13 @@ mixin CartBottomSheet on StatelessWidget {
 }
 
 class CartBottomSheetLayout extends StatelessWidget {
-  const CartBottomSheetLayout({Key? key}) : super(key: key);
+  CartBottomSheetLayout({Key? key}) : super(key: key);
+
+  final Map<String, CartModel> items = {
+    StaticData.productAirpods.id: CartModel(StaticData.productAirpods, 1),
+    StaticData.productVR.id: CartModel(StaticData.productVR, 1),
+    StaticData.productLaptop.id: CartModel(StaticData.productLaptop, 1),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +76,12 @@ class CartBottomSheetLayout extends StatelessWidget {
                 height: 20.h,
               ),
               const AppDividerLight(),
-              CartProductCard(
-                  product: StaticData.productHeadphone, quantity: 1),
-              CartProductCard(
-                  product: StaticData.productHeadphone, quantity: 3),
-              CartProductCard(
-                  product: StaticData.productHeadphone, quantity: 2),
+              Column(
+                children: items.entries
+                    .map((e) => CartProductCard(
+                        product: e.value.product, quantity: e.value.quantity))
+                    .toList(),
+              ),
               Padding(
                 padding: EdgeInsets.fromLTRB(24.r, 24.r, 24.r, 20.r),
                 child: Row(
@@ -90,7 +97,7 @@ class CartBottomSheetLayout extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "\$1099.99",
+                          "\$${calculateTotalAmount().toStringAsFixed(2)}",
                           style: AppTextStyles.h4.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
@@ -115,5 +122,13 @@ class CartBottomSheetLayout extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  double calculateTotalAmount() {
+    double total = 0;
+    items.forEach((key, value) {
+      total += value.product.sellingPrice * value.quantity;
+    });
+    return total;
   }
 }

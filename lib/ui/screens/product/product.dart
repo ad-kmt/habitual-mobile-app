@@ -3,11 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:habitual/controllers/product/product_controller.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:habitual/controllers/product_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
+import 'package:habitual/ui/screens/global_widgets/buttons/primary_button.dart';
+import 'package:habitual/ui/screens/global_widgets/buttons/tertiary_button_light.dart';
 import 'package:habitual/ui/screens/global_widgets/page/page_dots_secondary.dart';
 import 'package:habitual/ui/screens/global_widgets/pills/discount_pill_secondary.dart';
 import 'package:habitual/ui/screens/global_widgets/rating/rating_long.dart';
@@ -25,85 +28,21 @@ class Product extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.bgWhite,
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.fromLTRB(24.w, 24.h, 24.w, 32.h),
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          boxShadow: AppShadows.bottomNavShadow,
-        ),
-        height: 112.h,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  "WITH YOUR OPTIONS",
-                  style: AppTextStyles.hint,
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-
-                /// PRICE
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        /// SELLING PRICE
-                        Text(
-                          "\$${product.sellingPrice.toStringAsFixed(2)}",
-                          style: AppTextStyles.h4
-                              .copyWith(fontWeight: FontWeight.w900),
-                        ),
-                        SizedBox(
-                          width: 8.w,
-                        ),
-
-                        /// ACTUAL PRICE
-                        if (product.discount != 0)
-                          Text(
-                            "\$${product.actualPrice.toStringAsFixed(2)}",
-                            style: AppTextStyles.strikeSmall.copyWith(
-                              color: AppColors.textGray_80.withOpacity(0.75),
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: 8.w,
-                    ),
-
-                    /// DISCOUNT
-                    if (product.discount != 0)
-                      DiscountPillSecondary(
-                          discountPercentage: product.discount)
-                  ],
-                ),
-              ],
-            ),
-            CircleAvatar(
-              radius: 24.r,
-              backgroundColor: AppColors.bgWhite,
-              child: IconButton(
-                color: AppColors.uiGray_80,
-                padding: const EdgeInsets.all(0),
-                iconSize: 24.r,
-                icon: const Icon(
-                  Icons.arrow_forward_rounded,
-                  color: AppColors.uiGray_80,
-                ),
-                onPressed: () {
-                  // do something
-                },
-              ),
-            ),
-          ],
+      bottomNavigationBar: Obx(
+        () => AnimatedSwitcher(
+          duration: const Duration(milliseconds: 400),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return SlideTransition(
+              position: Tween(
+                begin: const Offset(0.0, 1.0),
+                end: const Offset(0.0, 0.0),
+              ).animate(animation),
+              child: child,
+            );
+          },
+          child: productController.isProductInCart
+              ? goToCartBottomNavigationBar(product)
+              : priceBottomNavigationBar(product),
         ),
       ),
       body: CustomScrollView(slivers: [
@@ -154,11 +93,12 @@ class Product extends StatelessWidget {
                             ),
                     ),
                     Positioned(
-                        bottom: 24.h,
-                        child: PageDotsSecondary(
-                          controller: productController,
-                          count: 3,
-                        ))
+                      bottom: 24.h,
+                      child: PageDotsSecondary(
+                        controller: productController,
+                        count: 3,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -220,6 +160,121 @@ class Product extends StatelessWidget {
           ),
         ),
       ]),
+    );
+  }
+
+  Widget goToCartBottomNavigationBar(ProductModel product) {
+    return Container(
+      key: const ValueKey<int>(1),
+      padding: EdgeInsets.fromLTRB(24.w, 24.h, 24.w, 32.h),
+      decoration: BoxDecoration(
+        color: AppColors.bgWhite,
+        boxShadow: AppShadows.bottomNavShadow,
+      ),
+      height: 112.h,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TertiaryButtonLight(
+              text: "Remove",
+              onClick: () {
+                productController.isProductInCart = false;
+              }),
+          SizedBox(
+            width: 24.w,
+          ),
+          Expanded(
+            child: PrimaryButton(
+                text: "Go to cart",
+                iconRight: Icons.arrow_forward_rounded,
+                onClick: () {}),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget priceBottomNavigationBar(ProductModel product) {
+    return Container(
+      key: const ValueKey<int>(0),
+      padding: EdgeInsets.fromLTRB(24.w, 24.h, 24.w, 32.h),
+      decoration: BoxDecoration(
+        color: AppColors.primaryColor,
+        boxShadow: AppShadows.bottomNavShadow,
+      ),
+      height: 112.h,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "WITH YOUR OPTIONS",
+                style: AppTextStyles.hint,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+
+              /// PRICE
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      /// SELLING PRICE
+                      Text(
+                        "\$${product.sellingPrice.toStringAsFixed(2)}",
+                        style: AppTextStyles.h4
+                            .copyWith(fontWeight: FontWeight.w900),
+                      ),
+                      SizedBox(
+                        width: 8.w,
+                      ),
+
+                      /// ACTUAL PRICE
+                      if (product.discount != 0)
+                        Text(
+                          "\$${product.actualPrice.toStringAsFixed(2)}",
+                          style: AppTextStyles.strikeSmall.copyWith(
+                            color: AppColors.textGray_80.withOpacity(0.75),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 8.w,
+                  ),
+
+                  /// DISCOUNT
+                  if (product.discount != 0)
+                    DiscountPillSecondary(discountPercentage: product.discount)
+                ],
+              ),
+            ],
+          ),
+          CircleAvatar(
+            radius: 24.r,
+            backgroundColor: AppColors.bgWhite,
+            child: IconButton(
+              color: AppColors.uiGray_80,
+              padding: const EdgeInsets.all(0),
+              iconSize: 24.r,
+              icon: const Icon(
+                Icons.arrow_forward_rounded,
+                color: AppColors.uiGray_80,
+              ),
+              onPressed: () {
+                productController.isProductInCart = true;
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

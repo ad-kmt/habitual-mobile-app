@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:habitual/controllers/my_app/my_app_controller.dart';
+import 'package:habitual/controllers/my_app_controller.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/screens/global_widgets/cart/cart_bottom_sheet.dart';

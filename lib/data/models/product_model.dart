@@ -5,6 +5,7 @@ part 'product_model.g.dart';
 /// TODO: make fields private, mention required fields in constructor
 @JsonSerializable()
 class ProductModel {
+  String id;
   String name;
   double sellingPrice;
   double actualPrice;
@@ -16,7 +17,8 @@ class ProductModel {
   String? imageSrc;
 
   ProductModel(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.sellingPrice,
       required this.actualPrice,
       this.description = "",

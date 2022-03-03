@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:habitual/controllers/my_app/my_app_controller.dart';
+import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/routes/app_pages.dart';
@@ -15,8 +17,7 @@ import 'package:habitual/ui/screens/product/args/product_screen_args.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
-
-  final MyAppController myAppController = Get.find();
+  final AuthController authController = Get.find();
 
   final List<String> coloredCardTitleList = [
     "Shopping habits and interests",
@@ -33,6 +34,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("home: " + authController.user.toString());
+    log("home: " + authController.userIdRx.value.toString());
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -91,12 +95,12 @@ class Home extends StatelessWidget {
                   top: 64.h,
                   child: GestureDetector(
                     onTap: () {
-                      myAppController.user != null
+                      authController.user != null
                           ? Get.toNamed(Routes.EDIT_PROFILE)
                           : Get.toNamed(Routes.LOGIN);
                     },
                     child: Obx(
-                      () => Column(
+                          () => Column(
                         children: [
                           const CircleAvatar(
                             backgroundColor: AppColors.bgWhite,
@@ -106,7 +110,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            myAppController.user?.firstName ?? 'Log in',
+                            authController.user?.firstName ?? 'Log in',
                             style: AppTextStyles.bodySmallBold,
                           ),
                         ],
@@ -132,7 +136,7 @@ class Home extends StatelessWidget {
                             double paddingRight = (index == 4) ? 16.w : 0;
 
                             ProductModel product = StaticData.products[
-                                StaticData.products.length - 1 - index];
+                            StaticData.products.length - 1 - index];
                             return Padding(
                               padding: EdgeInsets.fromLTRB(
                                   paddingLeft + 8, 8, paddingRight + 8, 0),
@@ -143,7 +147,7 @@ class Home extends StatelessWidget {
                                     Get.toNamed(
                                       Routes.PRODUCT,
                                       arguments:
-                                          ProductScreenArguments(product),
+                                      ProductScreenArguments(product),
                                     );
                                   },
                                   child: VerticalProductCardLarge(

@@ -5,8 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:habitual/controllers/auth/auth_controller.dart';
-import 'package:habitual/controllers/my_app/my_app_controller.dart';
+import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -18,7 +17,6 @@ import 'package:habitual/ui/screens/global_widgets/cards/icon/icon_card.dart';
 
 class Profile extends StatelessWidget {
   Profile({Key? key}) : super(key: key);
-  final MyAppController myAppController = Get.find();
   final AuthController authController = Get.find();
 
   @override
@@ -79,7 +77,7 @@ class Profile extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: Obx(
                       () {
-                        if (myAppController.user != null) {
+                        if (authController.user != null) {
                           return SizedBox(
                             child: Column(
                               children: [
@@ -105,7 +103,7 @@ class Profile extends StatelessWidget {
 
                                     /// USER NAME
                                     Text(
-                                      myAppController.user?.firstName ?? "NaN",
+                                      authController.user?.firstName ?? "NaN",
                                       style: AppTextStyles.h4.copyWith(
                                           fontWeight: FontWeight.w700,
                                           color: AppColors.textGray_80),
