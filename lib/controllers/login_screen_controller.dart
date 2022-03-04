@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/data/repository/login_repository.dart';
 
-class LoginController extends GetxController {
+class LoginScreenController extends GetxController {
   final LoginRepository loginRepository;
   final AuthController authController = Get.find();
 
@@ -13,7 +13,7 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  LoginController({required this.loginRepository});
+  LoginScreenController({required this.loginRepository});
 
   @override
   void onClose() {

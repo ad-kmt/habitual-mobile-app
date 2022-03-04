@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitual/controllers/global/auth_controller.dart';
+import 'package:habitual/controllers/global/product_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
-import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/dimensions.dart';
@@ -18,6 +18,7 @@ import 'package:habitual/ui/screens/product/args/product_screen_args.dart';
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
   final AuthController authController = Get.find();
+  final ProductDataController productDataController = Get.find();
 
   final List<String> coloredCardTitleList = [
     "Shopping habits and interests",
@@ -129,14 +130,17 @@ class Home extends StatelessWidget {
                         height: 360.h,
                         child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
-                          itemCount: StaticData.products.length,
+                          itemCount: productDataController.products.length,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             double paddingLeft = (index == 0) ? 16.w : 0;
                             double paddingRight = (index == 4) ? 16.w : 0;
 
-                            ProductModel product = StaticData.products[
-                                StaticData.products.length - 1 - index];
+                            ProductModel product =
+                                productDataController.products[
+                                    productDataController.products.length -
+                                        1 -
+                                        index];
                             return Padding(
                               padding: EdgeInsets.fromLTRB(
                                   paddingLeft + 8, 8, paddingRight + 8, 0),
@@ -197,7 +201,7 @@ class Home extends StatelessWidget {
               height: 327.h,
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: StaticData.products.length,
+                itemCount: productDataController.products.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   double paddingLeft = (index == 0) ? 16.w : 0;
@@ -212,11 +216,11 @@ class Home extends StatelessWidget {
                           Get.toNamed(
                             Routes.PRODUCT,
                             arguments: ProductScreenArguments(
-                                StaticData.products[index]),
+                                productDataController.products[index]),
                           );
                         },
                         child: VerticalProductCardSmall(
-                          product: StaticData.products[index],
+                          product: productDataController.products[index],
                         ),
                       ),
                     ),

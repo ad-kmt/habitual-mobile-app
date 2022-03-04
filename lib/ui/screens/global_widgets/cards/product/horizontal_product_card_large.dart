@@ -29,8 +29,8 @@ class HorizontalProductCardLarge extends StatelessWidget {
             Container(
               height: 112.r,
               width: 112.r,
-              child: product.imageSrc != null
-                  ? Image.asset(product.imageSrc!)
+              child: product.image != null
+                  ? Image.network(product.image!)
                   : Icon(
                       Icons.image,
                       color: AppColors.uiGray_40,

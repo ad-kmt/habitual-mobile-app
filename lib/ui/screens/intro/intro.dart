@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:habitual/controllers/global/auth_controller.dart';
-import 'package:habitual/controllers/intro_controller.dart';
+import 'package:habitual/controllers/intro_screen_controller.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -18,7 +18,7 @@ import 'package:habitual/ui/screens/global_widgets/page/page_dots_primary.dart';
 import 'package:habitual/ui/screens/intro/widgets/intro_content.dart';
 
 class Intro extends StatelessWidget {
-  final IntroController introController = Get.find();
+  final IntroScreenController introController = Get.find();
   final AuthController authController = Get.find();
 
   final List<Map<String, String>> introTextData = [

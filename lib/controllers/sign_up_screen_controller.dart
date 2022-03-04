@@ -7,7 +7,7 @@ import 'package:habitual/data/models/user_model.dart';
 import 'package:habitual/data/repository/signup_repository.dart';
 import 'package:habitual/routes/app_pages.dart';
 
-class SignUpController extends GetxController {
+class SignUpScreenController extends GetxController {
   final SignUpRepository signUpRepository;
 
   final AuthController authController = Get.find();
@@ -19,7 +19,7 @@ class SignUpController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  SignUpController({required this.signUpRepository});
+  SignUpScreenController({required this.signUpRepository});
 
   @override
   void onClose() {

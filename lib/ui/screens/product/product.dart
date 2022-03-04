@@ -4,7 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:habitual/controllers/product_controller.dart';
+import 'package:habitual/controllers/product_screen_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
@@ -19,7 +19,7 @@ import 'package:habitual/ui/screens/product/args/product_screen_args.dart';
 class Product extends StatelessWidget {
   Product({Key? key}) : super(key: key);
 
-  ProductController productController = Get.find();
+  ProductScreenController productController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -84,8 +84,8 @@ class Product extends StatelessWidget {
                         productController.currentPage = value;
                       },
                       itemCount: 3,
-                      itemBuilder: (context, index) => product.imageSrc != null
-                          ? Image.asset(product.imageSrc!)
+                      itemBuilder: (context, index) => product.image != null
+                          ? Image.network(product.image!)
                           : Icon(
                               Icons.image,
                               color: AppColors.uiGray_40,

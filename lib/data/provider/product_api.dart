@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:habitual/data/models/product_model.dart';
 
 class ProductApiClient {
   //collection reference
@@ -17,4 +18,28 @@ class ProductApiClient {
 //   QuerySnapshot productQuerySnaphot = await productCollection.get();
 //   _productsFromQuerySnaphot(productQuerySnaphot);
 // }
+
+  List<ProductModel> _productsFromSnaphot(QuerySnapshot querySnapshot) {
+    List<ProductModel> products = [];
+    for (var product in querySnapshot.docs) {
+      products.add(
+        ProductModel(
+          id: product.id,
+          name: product.get('name'),
+          actualPrice: product.get('actualPrice').toDouble(),
+          sellingPrice: product.get('sellingPrice').toDouble(),
+          description: product.get('description'),
+          rating: product.get('rating').toDouble(),
+          image: product.get('image'),
+        ),
+      );
+    }
+    // log("products size: " + products.length.toString());
+    return products;
+  }
+
+  Stream<List<ProductModel>> getAllProducts() {
+    // log("Getting product data stream");
+    return productCollection.snapshots().map(_productsFromSnaphot);
+  }
 }

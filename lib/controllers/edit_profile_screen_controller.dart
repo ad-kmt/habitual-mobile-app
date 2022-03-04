@@ -6,11 +6,11 @@ import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/data/models/user_model.dart';
 import 'package:habitual/data/repository/edit_profile_repository.dart';
 
-class EditProfileController extends GetxController {
+class EditProfileScreenController extends GetxController {
   final EditProfileRepository editProfileRepository;
   final AuthController authController = Get.find();
 
-  EditProfileController({required this.editProfileRepository});
+  EditProfileScreenController({required this.editProfileRepository});
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final firstNameController = TextEditingController();

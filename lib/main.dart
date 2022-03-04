@@ -6,7 +6,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:habitual/controllers/global/product_controller.dart';
+import 'package:habitual/data/provider/product_api.dart';
 import 'package:habitual/data/provider/user_api.dart';
+import 'package:habitual/data/repository/product_data_repository.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/app_theme.dart';
 import 'package:habitual/ui/constants/strings.dart';
@@ -28,6 +31,13 @@ void main() async {
       userApiClient: UserApiClient(),
     ),
   ));
+
+  Get.put(
+    ProductDataController(
+      productDataRepository:
+          ProductDataRepository(productApiClient: ProductApiClient()),
+    ),
+  );
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 

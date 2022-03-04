@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class ProductController extends GetxController {
+class ProductScreenController extends GetxController {
   final _currentPage = 0.obs;
 
   get currentPage => _currentPage.value;

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:habitual/controllers/edit_profile_controller.dart';
+import 'package:habitual/controllers/edit_profile_screen_controller.dart';
 import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
@@ -14,7 +14,7 @@ import 'package:habitual/ui/screens/global_widgets/input/base_input.dart';
 class EditProfile extends StatelessWidget {
   EditProfile({Key? key}) : super(key: key);
 
-  final EditProfileController editProfileController = Get.find();
+  final EditProfileScreenController editProfileController = Get.find();
   final AuthController authController = Get.find();
 
   @override

@@ -34,8 +34,8 @@ class VerticalProductCardLarge extends StatelessWidget {
               /// IMAGE
               Container(
                 width: double.infinity,
-                child: product.imageSrc != null
-                    ? Image.asset(product.imageSrc!)
+                child: product.image != null
+                    ? Image.network(product.image!)
                     : Icon(
                         Icons.image,
                         color: AppColors.uiGray_40,

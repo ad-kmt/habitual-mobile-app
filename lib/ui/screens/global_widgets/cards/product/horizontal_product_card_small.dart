@@ -29,8 +29,8 @@ class HorizontalProductCardSmall extends StatelessWidget {
             Container(
               height: 88.r,
               width: 88.r,
-              child: product.imageSrc != null
-                  ? Image.asset(product.imageSrc!)
+              child: product.image != null
+                  ? Image.network(product.image!)
                   : Icon(
                       Icons.image,
                       color: AppColors.uiGray_40,

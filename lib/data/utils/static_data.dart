@@ -11,7 +11,7 @@ class StaticData {
       description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
-      imageSrc: Assets.productImageHeadphone,
+      image: Assets.productImageHeadphone,
       isStaffPick: true);
 
   static ProductModel productLaptop = ProductModel(
@@ -23,7 +23,7 @@ class StaticData {
       description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
-      imageSrc: Assets.productImageLaptop,
+      image: Assets.productImageLaptop,
       isStaffPick: true);
 
   static ProductModel productVR = ProductModel(
@@ -35,7 +35,7 @@ class StaticData {
       description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
-      imageSrc: Assets.productImageVR,
+      image: Assets.productImageVR,
       isStaffPick: true);
 
   static ProductModel productIphone = ProductModel(
@@ -47,7 +47,7 @@ class StaticData {
       description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
-      imageSrc: Assets.productImageIphone,
+      image: Assets.productImageIphone,
       isStaffPick: true);
 
   static ProductModel productController = ProductModel(
@@ -59,7 +59,7 @@ class StaticData {
       description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
-      imageSrc: Assets.productImageController,
+      image: Assets.productImageController,
       isStaffPick: true);
 
   static ProductModel productAirpods = ProductModel(
@@ -71,7 +71,7 @@ class StaticData {
       description:
           "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
       category: "Category",
-      imageSrc: Assets.productImageAirpods,
+      image: Assets.productImageAirpods,
       isStaffPick: true);
 
   static List<ProductModel> products = [

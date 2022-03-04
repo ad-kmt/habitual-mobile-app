@@ -14,7 +14,7 @@ class ProductModel {
   double? rating;
   String category;
   bool isStaffPick;
-  String? imageSrc;
+  String? image;
 
   ProductModel(
       {required this.id,
@@ -25,12 +25,17 @@ class ProductModel {
       this.rating,
       this.category = "",
       this.isStaffPick = false,
-      this.imageSrc}) {
+      this.image}) {
     if (sellingPrice == actualPrice) {
       discount = 0;
     } else {
       discount = ((actualPrice - sellingPrice) / actualPrice) * 100;
     }
+  }
+
+  @override
+  String toString() {
+    return 'ProductModel{id: $id, name: $name}';
   }
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
