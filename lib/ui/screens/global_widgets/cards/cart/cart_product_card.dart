@@ -114,7 +114,6 @@ class CartProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     /// NAME
                     SizedBox(
                       child: Text(
