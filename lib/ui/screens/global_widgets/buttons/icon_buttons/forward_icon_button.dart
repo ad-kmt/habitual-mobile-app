@@ -8,7 +8,7 @@ class ForwardIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonIconSmall(
+    return CircularButtonIconSmallWhite(
       iconData: Icons.arrow_forward_ios_rounded,
       iconSize: 16.r,
     );

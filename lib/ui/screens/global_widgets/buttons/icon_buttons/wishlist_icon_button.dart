@@ -13,11 +13,12 @@ class WishlistIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isSelected
-        ? ButtonIconSmall(
+        ? CircularButtonIconSmallWhite(
             iconData: Icons.favorite,
             iconSize: 18.r,
             color: AppColors.accentRed,
           )
-        : ButtonIconSmall(iconData: Icons.favorite_border, iconSize: 18.r);
+        : CircularButtonIconSmallWhite(
+            iconData: Icons.favorite_border, iconSize: 18.r);
   }
 }

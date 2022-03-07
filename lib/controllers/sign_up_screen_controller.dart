@@ -43,7 +43,8 @@ class SignUpScreenController extends GetxController {
             uid: userId,
             firstName: firstNameController.text,
             lastName: lastNameController.text,
-            email: emailController.text);
+            email: emailController.text,
+            cart: []);
         log(user.toString());
         bool userCreationStatus = await signUpRepository.createUser(user);
         if (userCreationStatus) {

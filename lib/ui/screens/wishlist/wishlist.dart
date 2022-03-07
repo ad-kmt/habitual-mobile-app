@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:habitual/controllers/global/product_controller.dart';
 import 'package:habitual/data/utils/static_data.dart';
 import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -13,7 +14,9 @@ import 'package:habitual/ui/screens/global_widgets/cards/product/vertical_produc
 import 'package:habitual/ui/screens/global_widgets/cards/wishlist/wishlist_card_small.dart';
 
 class Wishlist extends StatelessWidget {
-  const Wishlist({Key? key}) : super(key: key);
+  Wishlist({Key? key}) : super(key: key);
+
+  final ProductDataController productDataController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -252,25 +255,28 @@ class Wishlist extends StatelessWidget {
                     SizedBox(
                       width: Get.width,
                       height: 312.h,
-                      child: ListView.builder(
-                        clipBehavior: Clip.none,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: 5,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          double paddingLeft = (index == 0) ? 16.w : 0;
-                          double paddingRight = (index == 4) ? 16.w : 0;
-                          return Container(
-                            padding: EdgeInsets.fromLTRB(
-                                paddingLeft + 8, 0, paddingRight + 8, 0),
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: VerticalProductCardLarge(
-                                product: StaticData.productHeadphone,
+                      child: Obx(
+                        () => ListView.builder(
+                          clipBehavior: Clip.none,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: productDataController.products.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            double paddingLeft = (index == 0) ? 16.w : 0;
+                            double paddingRight = (index == 4) ? 16.w : 0;
+                            return Container(
+                              padding: EdgeInsets.fromLTRB(
+                                  paddingLeft + 8, 0, paddingRight + 8, 0),
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: VerticalProductCardLarge(
+                                  product:
+                                      productDataController.products[index],
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
                     SizedBox(

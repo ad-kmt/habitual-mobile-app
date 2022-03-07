@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:habitual/controllers/global/auth_controller.dart';
 import 'package:habitual/controllers/global/product_controller.dart';
+import 'package:habitual/controllers/global/user_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -17,7 +17,7 @@ import 'package:habitual/ui/screens/product/args/product_screen_args.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
-  final AuthController authController = Get.find();
+  final UserController userController = Get.find();
   final ProductDataController productDataController = Get.find();
 
   final List<String> coloredCardTitleList = [
@@ -35,8 +35,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("home: " + authController.user.toString());
-    log("home: " + authController.userIdRx.value.toString());
+    log("home: " + userController.user.toString());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -96,7 +95,7 @@ class Home extends StatelessWidget {
                   top: 64.h,
                   child: GestureDetector(
                     onTap: () {
-                      authController.user != null
+                      userController.user != null
                           ? Get.toNamed(Routes.EDIT_PROFILE)
                           : Get.toNamed(Routes.LOGIN);
                     },
@@ -111,7 +110,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            authController.user?.firstName ?? 'Log in',
+                            userController.user?.firstName ?? 'Log in',
                             style: AppTextStyles.bodySmallBold,
                           ),
                         ],

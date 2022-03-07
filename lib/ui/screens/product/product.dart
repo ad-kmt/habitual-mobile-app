@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:habitual/controllers/global/cart_controller.dart';
 import 'package:habitual/controllers/product_screen_controller.dart';
 import 'package:habitual/data/models/product_model.dart';
 import 'package:habitual/ui/constants/colors.dart';
@@ -20,6 +21,7 @@ class Product extends StatelessWidget {
   Product({Key? key}) : super(key: key);
 
   ProductScreenController productController = Get.find();
+  CartController cartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,8 @@ class Product extends StatelessWidget {
               child: child,
             );
           },
-          child: productController.isProductInCart
+          child: cartController.isItemAlreadyAdded(product) != null &&
+                  cartController.isItemAlreadyAdded(product) == true
               ? goToCartBottomNavigationBar(product)
               : priceBottomNavigationBar(product),
         ),
@@ -178,7 +181,8 @@ class Product extends StatelessWidget {
           TertiaryButtonLight(
               text: "Remove",
               onClick: () {
-                productController.isProductInCart = false;
+                bool status = cartController.removeProductFromCart(product);
+                if (status) productController.isProductInCart = false;
               }),
           SizedBox(
             width: 24.w,
@@ -269,7 +273,8 @@ class Product extends StatelessWidget {
                 color: AppColors.uiGray_80,
               ),
               onPressed: () {
-                productController.isProductInCart = true;
+                bool status = cartController.addProductToCart(product);
+                if (status) productController.isProductInCart = true;
               },
             ),
           ),

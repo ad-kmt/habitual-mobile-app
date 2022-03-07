@@ -2,13 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:habitual/controllers/global/auth_controller.dart';
+import 'package:habitual/controllers/global/user_controller.dart';
 import 'package:habitual/data/models/user_model.dart';
 import 'package:habitual/data/repository/edit_profile_repository.dart';
 
 class EditProfileScreenController extends GetxController {
   final EditProfileRepository editProfileRepository;
-  final AuthController authController = Get.find();
+  final UserController userController = Get.find();
 
   EditProfileScreenController({required this.editProfileRepository});
 
@@ -20,9 +20,9 @@ class EditProfileScreenController extends GetxController {
   @override
   void onInit() {
     // Simulating obtaining the user name from some local storage
-    firstNameController.text = authController.user?.firstName ?? "";
-    lastNameController.text = authController.user?.lastName ?? "";
-    emailController.text = authController.user?.email ?? "";
+    firstNameController.text = userController.user?.firstName ?? "";
+    lastNameController.text = userController.user?.lastName ?? "";
+    emailController.text = userController.user?.email ?? "";
     super.onInit();
   }
 
@@ -44,7 +44,7 @@ class EditProfileScreenController extends GetxController {
       log("Form Validated. Updating profile");
       log("First name: ${firstNameController.text} Last name: ${lastNameController.text}");
 
-      UserModel user = authController.user!;
+      UserModel user = userController.user!;
       user.firstName = firstNameController.text;
       user.lastName = lastNameController.text;
       bool result = await editProfileRepository.updateUser(user);

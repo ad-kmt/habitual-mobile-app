@@ -6,15 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreenController extends GetxController {
   final _currentPage = 0.obs;
-
   get currentPage => _currentPage.value;
-
   set currentPage(val) => _currentPage.value = val;
 
   final _loading = true.obs;
-
   get loading => _loading.value;
-
   set loading(val) => _loading.value = val;
 
   checkFirstSeen() async {

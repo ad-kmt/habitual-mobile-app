@@ -22,4 +22,8 @@ class ProductDataController extends GetxController {
         _products, (prods) => {log("products: " + products.length.toString())});
     super.onInit();
   }
+
+  ProductModel getProductModel(String productId) {
+    return products.firstWhere((product) => product.id == productId);
+  }
 }

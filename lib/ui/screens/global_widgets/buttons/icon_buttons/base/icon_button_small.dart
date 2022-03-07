@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 
-class ButtonIconSmall extends StatelessWidget {
-  const ButtonIconSmall(
+class CircularButtonIconSmallWhite extends StatelessWidget {
+  const CircularButtonIconSmallWhite(
       {Key? key, required this.iconData, required this.iconSize, this.color})
       : super(key: key);
 

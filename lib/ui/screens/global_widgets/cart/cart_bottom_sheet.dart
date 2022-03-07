@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:habitual/data/models/cart_model.dart';
-import 'package:habitual/data/utils/static_data.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:habitual/controllers/global/cart_controller.dart';
+import 'package:habitual/controllers/global/user_controller.dart';
+import 'package:habitual/data/models/user_model.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
 
@@ -32,11 +36,16 @@ mixin CartBottomSheet on StatelessWidget {
 class CartBottomSheetLayout extends StatelessWidget {
   CartBottomSheetLayout({Key? key}) : super(key: key);
 
-  final Map<String, CartModel> items = {
-    StaticData.productAirpods.id: CartModel(StaticData.productAirpods, 1),
-    StaticData.productVR.id: CartModel(StaticData.productVR, 1),
-    StaticData.productLaptop.id: CartModel(StaticData.productLaptop, 1),
-  };
+  CartController cartController = Get.find();
+  UserController userController = Get.find();
+
+  // final Map<String, CartItemModel> items = {
+  //   StaticData.productAirpods.id:
+  //       CartItemModel("1", StaticData.productAirpods, 1),
+  //   StaticData.productVR.id: CartItemModel("2", StaticData.productVR, 1),
+  //   StaticData.productLaptop.id:
+  //       CartItemModel("3", StaticData.productLaptop, 1),
+  // };
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +85,20 @@ class CartBottomSheetLayout extends StatelessWidget {
                 height: 20.h,
               ),
               const AppDividerLight(),
-              Column(
-                children: items.entries
-                    .map((e) => CartProductCard(
-                        product: e.value.product, quantity: e.value.quantity))
-                    .toList(),
-              ),
+              Obx(() {
+                UserModel? user = userController.user;
+                if (user == null) {
+                  return const Text("Please login");
+                } else if (user.cart.isEmpty) {
+                  return const Text("Cart is Empty");
+                } else {
+                  return Column(
+                    children: user.cart
+                        .map((e) => CartProductCard(cartItemModel: e))
+                        .toList(),
+                  );
+                }
+              }),
               Padding(
                 padding: EdgeInsets.fromLTRB(24.r, 24.r, 24.r, 20.r),
                 child: Row(
@@ -96,10 +113,12 @@ class CartBottomSheetLayout extends StatelessWidget {
                             fontWeight: FontWeight.w800,
                           ),
                         ),
-                        Text(
-                          "\$${calculateTotalAmount().toStringAsFixed(2)}",
-                          style: AppTextStyles.h4.copyWith(
-                            fontWeight: FontWeight.w700,
+                        Obx(
+                          () => Text(
+                            "\$${cartController.totalCartAmount.toStringAsFixed(2)}",
+                            style: AppTextStyles.h4.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
                       ],
@@ -122,13 +141,5 @@ class CartBottomSheetLayout extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  double calculateTotalAmount() {
-    double total = 0;
-    items.forEach((key, value) {
-      total += value.product.sellingPrice * value.quantity;
-    });
-    return total;
   }
 }

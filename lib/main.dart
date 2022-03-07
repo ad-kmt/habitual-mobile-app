@@ -6,10 +6,13 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:habitual/controllers/global/cart_controller.dart';
 import 'package:habitual/controllers/global/product_controller.dart';
+import 'package:habitual/controllers/global/user_controller.dart';
 import 'package:habitual/data/provider/product_api.dart';
 import 'package:habitual/data/provider/user_api.dart';
 import 'package:habitual/data/repository/product_data_repository.dart';
+import 'package:habitual/data/repository/user_repository.dart';
 import 'package:habitual/routes/app_pages.dart';
 import 'package:habitual/ui/constants/app_theme.dart';
 import 'package:habitual/ui/constants/strings.dart';
@@ -28,9 +31,16 @@ void main() async {
   Get.put(AuthController(
     authRepository: AuthRepository(
       authApiClient: FirebaseAuthApiClient(),
-      userApiClient: UserApiClient(),
     ),
   ));
+  Get.put(
+    UserController(
+      userRepository: UserRepository(
+        userApiClient: UserApiClient(),
+      ),
+    ),
+  );
+  Get.put(CartController());
 
   Get.put(
     ProductDataController(

@@ -12,4 +12,9 @@ class ProductScreenController extends GetxController {
   get isProductInCart => _isProductInCart.value;
 
   set isProductInCart(val) => _isProductInCart.value = val;
+
+  @override
+  void onInit() {
+    super.onInit();
+  }
 }

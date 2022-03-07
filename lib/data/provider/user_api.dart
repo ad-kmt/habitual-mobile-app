@@ -12,11 +12,7 @@ class UserApiClient {
   Future<bool> updateUserData(UserModel userModel) async {
     log("Updating user data for user: ${userModel.toString()}");
     try {
-      await userCollection.doc(userModel.uid).set({
-        'firstName': userModel.firstName,
-        'lastName': userModel.lastName,
-        'email': userModel.email,
-      });
+      await userCollection.doc(userModel.uid).update(userModel.toJson());
       log("User updated successfully");
       return true;
     } catch (e) {
@@ -28,12 +24,8 @@ class UserApiClient {
 
   //user data from snapshot
   UserModel _userModelFromSnapshot(DocumentSnapshot snapshot) {
-    return UserModel(
-      uid: snapshot.id,
-      firstName: snapshot.get('firstName'),
-      lastName: snapshot.get('lastName'),
-      email: snapshot.get('email'),
-    );
+    Map<String, dynamic> userMap = snapshot.data() as Map<String, dynamic>;
+    return UserModel.fromJson(userMap);
   }
 
   //get user model stream. Realtime approach
