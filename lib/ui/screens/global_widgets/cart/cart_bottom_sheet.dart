@@ -84,58 +84,70 @@ class CartBottomSheetLayout extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              const AppDividerLight(),
               Obx(() {
                 UserModel? user = userController.user;
                 if (user == null) {
-                  return const Text("Please login");
+                  return Column(
+                    children: const [
+                      Text("Please login"),
+                    ],
+                  );
                 } else if (user.cart.isEmpty) {
-                  return const Text("Cart is Empty");
+                  return Column(
+                    children: const [
+                      Text("Cart is Empty"),
+                    ],
+                  );
                 } else {
                   return Column(
-                    children: user.cart
-                        .map((e) => CartProductCard(cartItemModel: e))
-                        .toList(),
+                    children: [
+                      Column(
+                        children: user.cart
+                            .map((e) => CartProductCard(cartItemModel: e))
+                            .toList(),
+                      ),
+                      const AppDividerLight(),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(24.r, 24.r, 24.r, 20.r),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "TOTAL",
+                                  style: AppTextStyles.label.copyWith(
+                                    color: AppColors.uiGray_60,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                Obx(
+                                  () => Text(
+                                    "\$${cartController.totalCartAmount.toStringAsFixed(2)}",
+                                    style: AppTextStyles.h4.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                            ),
+                            SizedBox(
+                              width: 40.h,
+                            ),
+                            Expanded(
+                              child: PrimaryButton(
+                                  text: "Checkout",
+                                  iconRight: Icons.arrow_forward_ios_rounded,
+                                  onClick: () {}),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   );
                 }
               }),
-              Padding(
-                padding: EdgeInsets.fromLTRB(24.r, 24.r, 24.r, 20.r),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          "TOTAL",
-                          style: AppTextStyles.label.copyWith(
-                            color: AppColors.uiGray_60,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                        Obx(
-                          () => Text(
-                            "\$${cartController.totalCartAmount.toStringAsFixed(2)}",
-                            style: AppTextStyles.h4.copyWith(
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ],
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                    ),
-                    SizedBox(
-                      width: 40.h,
-                    ),
-                    Expanded(
-                      child: PrimaryButton(
-                          text: "Checkout",
-                          iconRight: Icons.arrow_forward_ios_rounded,
-                          onClick: () {}),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

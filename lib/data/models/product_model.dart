@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'product_model.g.dart';
 
-/// TODO: make fields private, mention required fields in constructor
 @JsonSerializable()
 class ProductModel {
   String id;

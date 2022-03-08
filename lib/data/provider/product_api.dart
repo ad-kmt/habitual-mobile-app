@@ -42,4 +42,12 @@ class ProductApiClient {
     // log("Getting product data stream");
     return productCollection.snapshots().map(_productsFromSnaphot);
   }
+
+  Future<List<ProductModel>> searchProducts(String name) async {
+    QuerySnapshot querySnapshot = await productCollection
+        .where("searchKeywords", arrayContains: name)
+        .get();
+
+    return _productsFromSnaphot(querySnapshot);
+  }
 }

@@ -133,7 +133,10 @@ class Home extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             double paddingLeft = (index == 0) ? 16.w : 0;
-                            double paddingRight = (index == 4) ? 16.w : 0;
+                            double paddingRight = (index ==
+                                    productDataController.products.length - 1)
+                                ? 16.w
+                                : 0;
 
                             ProductModel product =
                                 productDataController.products[
@@ -204,7 +207,10 @@ class Home extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   double paddingLeft = (index == 0) ? 16.w : 0;
-                  double paddingRight = (index == 4) ? 16.w : 0;
+                  double paddingRight =
+                      (index == productDataController.products.length - 1)
+                          ? 16.w
+                          : 0;
                   return Padding(
                     padding: EdgeInsets.fromLTRB(
                         paddingLeft + 8, 24, paddingRight + 8, 0),

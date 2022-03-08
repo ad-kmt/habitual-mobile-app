@@ -9,6 +9,7 @@ import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/screens/global_widgets/cart/cart_bottom_sheet.dart';
 import 'package:habitual/ui/screens/profile/profile.dart';
+import 'package:habitual/ui/screens/search/search_product_screen.dart';
 import 'package:habitual/ui/screens/wishlist/wishlist.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -24,9 +25,9 @@ class AppMain extends StatelessWidget with CartBottomSheet {
     return [
       Home(),
       Wishlist(),
-      Home(),
+      SearchProductScreen(),
       Profile(),
-      Wishlist(),
+      Home(),
     ];
   }
 
@@ -60,6 +61,9 @@ class AppMain extends StatelessWidget with CartBottomSheet {
         ),
         activeColorPrimary: AppColors.uiGray_80,
         inactiveColorPrimary: AppColors.uiGray_40,
+        // onPressed: (context) async {
+        //   // await showSearch(context: context, delegate: ProductSearchDelegate());
+        // },
       ),
       PersistentBottomNavBarItem(
         icon: Icon(
@@ -77,7 +81,9 @@ class AppMain extends StatelessWidget with CartBottomSheet {
         activeColorPrimary: AppColors.uiGray_80,
         inactiveColorPrimary: AppColors.uiGray_40,
         onPressed: (context) {
-          showCartBottomSheet(context!);
+          if (context != null) {
+            showCartBottomSheet(context);
+          }
         },
       ),
     ];
