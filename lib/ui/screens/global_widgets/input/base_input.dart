@@ -213,12 +213,10 @@ class BaseInput1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         /// LABEL
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             /// LABEL LEFT
             if (labelLeft.isNotEmpty)
               Text(
