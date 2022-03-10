@@ -26,4 +26,8 @@ class ProductDataController extends GetxController {
   ProductModel getProductModel(String productId) {
     return products.firstWhere((product) => product.id == productId);
   }
+
+  Future<List<ProductModel>> searchProducts(String name) {
+    return productDataRepository.searchProducts(name);
+  }
 }

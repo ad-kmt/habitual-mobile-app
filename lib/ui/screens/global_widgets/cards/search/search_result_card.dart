@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habitual/data/models/product_model.dart';
-import 'package:habitual/ui/constants/assets.dart';
 import 'package:habitual/ui/constants/colors.dart';
 import 'package:habitual/ui/constants/shadows.dart';
 import 'package:habitual/ui/constants/text_styles.dart';
@@ -27,7 +26,13 @@ class SearchResultCard extends StatelessWidget {
             Container(
               height: 112.r,
               width: 112.r,
-              child: Image.asset(Assets.productImageLaptop),
+              child: product.image != null
+                  ? Image.network(product.image!)
+                  : Icon(
+                      Icons.image,
+                      color: AppColors.uiGray_40,
+                      size: 40.r,
+                    ),
               padding: EdgeInsets.all(18.r),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10.r)),

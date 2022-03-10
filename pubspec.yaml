@@ -88,6 +88,7 @@ flutter:
     - assets/images/social_media/
     - assets/images/wishlist/
     - assets/images/profile/
+    - assets/images/search/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

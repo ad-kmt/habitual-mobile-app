@@ -9,4 +9,8 @@ class ProductDataRepository {
   Stream<List<ProductModel>> getAllProducts() {
     return productApiClient.getAllProducts();
   }
+
+  Future<List<ProductModel>> searchProducts(String name) {
+    return productApiClient.searchProducts(name);
+  }
 }

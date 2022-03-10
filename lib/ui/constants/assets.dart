@@ -39,4 +39,7 @@ class Assets {
       "assets/images/wishlist/wishlist_empty.svg";
   static const String interestsEmpty =
       "assets/images/profile/interests_empty.svg";
+
+  static const String searchNoResultSvg =
+      "assets/images/search/no_results_illustration.svg";
 }

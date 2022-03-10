@@ -44,10 +44,8 @@ class ProductApiClient {
   }
 
   Future<List<ProductModel>> searchProducts(String name) async {
-    QuerySnapshot querySnapshot = await productCollection
-        .where("searchKeywords", arrayContains: name)
-        .get();
-
+    QuerySnapshot querySnapshot =
+        await productCollection.where("searchTags", arrayContains: name).get();
     return _productsFromSnaphot(querySnapshot);
   }
 }
