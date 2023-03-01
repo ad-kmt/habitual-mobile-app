@@ -11,7 +11,7 @@ import 'package:habitual/ui/screens/global_widgets/cart/cart_bottom_sheet.dart';
 import 'package:habitual/ui/screens/profile/profile.dart';
 import 'package:habitual/ui/screens/search/search_product_screen.dart';
 import 'package:habitual/ui/screens/wishlist/wishlist.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'global_widgets/custom_icons/navbar_icons_icons.dart';
 import 'home/home.dart';

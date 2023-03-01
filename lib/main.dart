@@ -66,9 +66,9 @@ class MyApp extends StatelessWidget {
         designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
-        builder: () => GetMaterialApp(
+        builder: (BuildContext c, child) => GetMaterialApp(
           builder: (context, widget) {
-            ScreenUtil.setContext(context);
+            // ScreenUtil.setContext(context);
             return MediaQuery(
               //Setting font does not change with system font size
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
